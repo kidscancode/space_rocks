@@ -1,0 +1,92 @@
+[gd_scene load_steps=9 format=1]
+
+[ext_resource path="res://scripts/player.gd" type="Script" id=1]
+[ext_resource path="res://art/sheet.playerShip2_orange.atex" type="Texture" id=2]
+[ext_resource path="res://art/sheet.fire11.atex" type="Texture" id=3]
+[ext_resource path="res://art/sheet.fire14.atex" type="Texture" id=4]
+[ext_resource path="res://art/sheet.fire16.atex" type="Texture" id=5]
+[ext_resource path="res://art/sheet.fire17.atex" type="Texture" id=6]
+
+[sub_resource type="CircleShape2D" id=1]
+
+custom_solver_bias = 0.0
+radius = 24.9676
+
+[sub_resource type="SpriteFrames" id=2]
+
+animations = [ { "frames":[ ExtResource( 3 ), ExtResource( 4 ) ], "loop":true, "name":"blue", "speed":5.0 }, { "frames":[ ExtResource( 5 ), ExtResource( 6 ) ], "loop":true, "name":"orange", "speed":5.0 } ]
+
+[node name="player" type="Area2D"]
+
+transform/pos = Vector2( 512, 368 )
+input/pickable = true
+shapes/0/shape = SubResource( 1 )
+shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 4.45535 )
+shapes/0/trigger = false
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+script/script = ExtResource( 1 )
+__meta__ = { "_edit_group_":true }
+
+[node name="ship" type="Sprite" parent="."]
+
+transform/scale = Vector2( 0.6, 0.6 )
+texture = ExtResource( 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+
+transform/pos = Vector2( 0, 4.45535 )
+shape = SubResource( 1 )
+trigger = false
+_update_shape_index = 0
+
+[node name="shoot_timer" type="Timer" parent="."]
+
+process_mode = 1
+wait_time = 0.2
+one_shot = false
+autostart = false
+
+[node name="muzzle(nose)" type="Position2D" parent="."]
+
+transform/pos = Vector2( 0, -50 )
+
+[node name="muzzle(rwing)" type="Position2D" parent="."]
+
+transform/pos = Vector2( 30, -25 )
+
+[node name="muzzle(lwing)" type="Position2D" parent="."]
+
+transform/pos = Vector2( -30, -25 )
+
+[node name="exhaust" type="AnimatedSprite" parent="."]
+
+transform/pos = Vector2( 0, 35 )
+frames = SubResource( 2 )
+animation = "blue"
+playing = true
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+anchor_mode = 1
+rotating = false
+current = false
+zoom = Vector2( 1, 1 )
+limit/left = -10000000
+limit/top = -10000000
+limit/right = 10000000
+limit/bottom = 10000000
+drag_margin/h_enabled = true
+drag_margin/v_enabled = true
+smoothing/enable = false
+smoothing/speed = 5.0
+drag_margin/left = 0.2
+drag_margin/top = 0.2
+drag_margin/right = 0.2
+drag_margin/bottom = 0.2
+
+[connection signal="area_enter" from="." to="." method="_on_player_area_enter"]
+
+
