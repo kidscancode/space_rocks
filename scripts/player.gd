@@ -15,7 +15,7 @@ var pos
 var rot = 0
 var vel = Vector2(0, 0)
 var acc = Vector2(0, 0)
-
+var shield = 100
 
 func _ready():
 	screen_size = get_viewport_rect().size
@@ -65,6 +65,7 @@ func shoot():
 	var new_bullet = bullet.instance()
 	bullet_container.add_child(new_bullet)
 	new_bullet.set_pos(get_node("muzzle(nose)").get_global_pos())
+	get_node("shoot_sound").play("sfx_wpn_laser7")
 
 func shoot_double():
 	for n in ["muzzle(lwing)", "muzzle(rwing)"]:
@@ -77,4 +78,7 @@ func enable_shoot():
 
 func _on_player_area_enter( area ):
 	if area.get_parent().get_groups().has("meteors"):
+		var dmg = area.get_parent().get_parent().damage[area.get_parent().get_parent().size]
+		shield -= dmg
+		print(shield)
 		area.get_parent().get_parent().explode()

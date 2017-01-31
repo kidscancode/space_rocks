@@ -7,6 +7,9 @@ var sprites = {
 	'tiny': ['tiny1', 'tiny2']
 }
 
+var points = {'big': 5, 'med': 10, 'sm': 25, 'tiny': 50}
+var damage = {'big': 45, 'med': 20, 'sm': 15, 'tiny': 5}
+
 export var SPEED_MIN = 50
 export var SPEED_MAX = 200
 export var ROT_MAX = 120
@@ -65,7 +68,7 @@ func explode():
 			newsize = 'sm'
 		elif size == 'sm':
 			newsize = 'tiny'
-		get_node("/root/main").spawn_meteors(2, newsize, pos)
+		get_node("/root/main").spawn_meteors(2, newsize, pos, false, vel)
 	queue_free()
-	get_node("/root/main").score += 1
+	get_node("/root/main").score += points[size]
 	get_node("/root/main").play_explosion(pos)

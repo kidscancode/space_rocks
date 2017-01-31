@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=1]
+[gd_scene load_steps=14 format=1]
 
 [ext_resource path="res://scripts/player.gd" type="Script" id=1]
 [ext_resource path="res://art/sheet.playerShip2_orange.atex" type="Texture" id=2]
@@ -6,6 +6,10 @@
 [ext_resource path="res://art/sheet.fire14.atex" type="Texture" id=4]
 [ext_resource path="res://art/sheet.fire16.atex" type="Texture" id=5]
 [ext_resource path="res://art/sheet.fire17.atex" type="Texture" id=6]
+[ext_resource path="res://audio/sfx_wpn_laser6.wav" type="Sample" id=7]
+[ext_resource path="res://audio/sfx_wpn_laser7.wav" type="Sample" id=8]
+[ext_resource path="res://audio/sfx_wpn_laser8.wav" type="Sample" id=9]
+[ext_resource path="res://art/sheet.shield3.atex" type="Texture" id=10]
 
 [sub_resource type="CircleShape2D" id=1]
 
@@ -15,6 +19,12 @@ radius = 24.9676
 [sub_resource type="SpriteFrames" id=2]
 
 animations = [ { "frames":[ ExtResource( 3 ), ExtResource( 4 ) ], "loop":true, "name":"blue", "speed":5.0 }, { "frames":[ ExtResource( 5 ), ExtResource( 6 ) ], "loop":true, "name":"orange", "speed":5.0 } ]
+
+[sub_resource type="SampleLibrary" id=3]
+
+samples/sfx_wpn_laser6 = { "db":0.0, "pitch":1.0, "sample":ExtResource( 7 ) }
+samples/sfx_wpn_laser7 = { "db":0.0, "pitch":1.0, "sample":ExtResource( 8 ) }
+samples/sfx_wpn_laser8 = { "db":0.0, "pitch":1.0, "sample":ExtResource( 9 ) }
 
 [node name="player" type="Area2D"]
 
@@ -55,10 +65,12 @@ transform/pos = Vector2( 0, -50 )
 
 [node name="muzzle(rwing)" type="Position2D" parent="."]
 
+visibility/visible = false
 transform/pos = Vector2( 30, -25 )
 
 [node name="muzzle(lwing)" type="Position2D" parent="."]
 
+visibility/visible = false
 transform/pos = Vector2( -30, -25 )
 
 [node name="exhaust" type="AnimatedSprite" parent="."]
@@ -66,26 +78,30 @@ transform/pos = Vector2( -30, -25 )
 transform/pos = Vector2( 0, 35 )
 frames = SubResource( 2 )
 animation = "blue"
+frame = 1
 playing = true
 
-[node name="Camera2D" type="Camera2D" parent="."]
+[node name="shoot_sound" type="SamplePlayer" parent="."]
 
-anchor_mode = 1
-rotating = false
-current = false
-zoom = Vector2( 1, 1 )
-limit/left = -10000000
-limit/top = -10000000
-limit/right = 10000000
-limit/bottom = 10000000
-drag_margin/h_enabled = true
-drag_margin/v_enabled = true
-smoothing/enable = false
-smoothing/speed = 5.0
-drag_margin/left = 0.2
-drag_margin/top = 0.2
-drag_margin/right = 0.2
-drag_margin/bottom = 0.2
+config/polyphony = 1
+config/samples = SubResource( 3 )
+default/volume_db = 0.0
+default/pitch_scale = 1.0
+default/pan = 0.0
+default/depth = 0.0
+default/height = 0.0
+default/filter/type = 0
+default/filter/cutoff = 5000.0
+default/filter/resonance = 1.0
+default/filter/gain = 1.0
+default/reverb_room = 2
+default/reverb_send = 0.0
+default/chorus_send = 0.0
+
+[node name="shield" type="Sprite" parent="."]
+
+transform/scale = Vector2( 0.6, 0.6 )
+texture = ExtResource( 10 )
 
 [connection signal="area_enter" from="." to="." method="_on_player_area_enter"]
 
