@@ -19,7 +19,12 @@ func _process(delta):
 	if get_node("meteor_container").get_child_count() == 0:
 		level += 1
 		spawn_meteors(level + 2, 'big', Vector2(0, 0), true)
-	get_node("CanvasLayer/score").set_text(str(score))
+	get_node("HUD/score").set_text(str(score))
+	if get_node("player").shield_on:
+		get_node("HUD/shield_indicator").set_value(get_node("player").shield_level)
+	else:
+		# TODO: set shield indicator to off
+		pass
 
 func spawn_meteors(num, size, loc, rand=false, vel=Vector2(0, 0)):
 	for i in range(num):

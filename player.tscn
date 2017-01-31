@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=1]
+[gd_scene load_steps=17 format=1]
 
 [ext_resource path="res://scripts/player.gd" type="Script" id=1]
 [ext_resource path="res://art/sheet.playerShip2_orange.atex" type="Texture" id=2]
@@ -10,6 +10,8 @@
 [ext_resource path="res://audio/sfx_wpn_laser7.wav" type="Sample" id=8]
 [ext_resource path="res://audio/sfx_wpn_laser8.wav" type="Sample" id=9]
 [ext_resource path="res://art/sheet.shield3.atex" type="Texture" id=10]
+[ext_resource path="res://audio/sfx_sound_shutdown1.wav" type="Sample" id=11]
+[ext_resource path="res://audio/sfx_sounds_powerup18.wav" type="Sample" id=12]
 
 [sub_resource type="CircleShape2D" id=1]
 
@@ -25,6 +27,11 @@ animations = [ { "frames":[ ExtResource( 3 ), ExtResource( 4 ) ], "loop":true, "
 samples/sfx_wpn_laser6 = { "db":0.0, "pitch":1.0, "sample":ExtResource( 7 ) }
 samples/sfx_wpn_laser7 = { "db":0.0, "pitch":1.0, "sample":ExtResource( 8 ) }
 samples/sfx_wpn_laser8 = { "db":0.0, "pitch":1.0, "sample":ExtResource( 9 ) }
+
+[sub_resource type="SampleLibrary" id=4]
+
+samples/sfx_sound_shutdown1 = { "db":0.0, "pitch":1.0, "sample":ExtResource( 11 ) }
+samples/sfx_sounds_powerup18 = { "db":0.0, "pitch":1.0, "sample":ExtResource( 12 ) }
 
 [node name="player" type="Area2D"]
 
@@ -102,6 +109,17 @@ default/chorus_send = 0.0
 
 transform/scale = Vector2( 0.6, 0.6 )
 texture = ExtResource( 10 )
+
+[node name="shield_sounds" type="SamplePlayer2D" parent="."]
+
+params/volume_db = 0.0
+params/pitch_scale = 1.0
+params/attenuation/min_distance = 1.0
+params/attenuation/max_distance = 2048.0
+params/attenuation/distance_exp = 1.0
+config/polyphony = 1
+config/samples = SubResource( 4 )
+config/pitch_random = 0.0
 
 [connection signal="area_enter" from="." to="." method="_on_player_area_enter"]
 

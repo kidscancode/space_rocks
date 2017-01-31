@@ -15,7 +15,8 @@ var pos
 var rot = 0
 var vel = Vector2(0, 0)
 var acc = Vector2(0, 0)
-var shield = 100
+var shield_level = 100
+var shield_on = true
 
 func _ready():
 	screen_size = get_viewport_rect().size
@@ -60,6 +61,13 @@ func _process(delta):
 		pos.y = -ship_size.height / 2
 	set_rot(rot - deg2rad(90))
 	set_pos(pos)
+	if shield_level < 0:
+		shield_level = 0
+	if shield_level == 0 and shield_on:
+		shield_on = false
+		get_node("shield").hide()
+		get_node("shield_sounds").play("sfx_sound_shutdown1")
+
 
 func shoot():
 	var new_bullet = bullet.instance()
@@ -79,6 +87,5 @@ func enable_shoot():
 func _on_player_area_enter( area ):
 	if area.get_parent().get_groups().has("meteors"):
 		var dmg = area.get_parent().get_parent().damage[area.get_parent().get_parent().size]
-		shield -= dmg
-		print(shield)
+		shield_level -= dmg
 		area.get_parent().get_parent().explode()
