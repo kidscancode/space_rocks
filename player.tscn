@@ -46,6 +46,8 @@ linear_damp = 0.1
 angular_damp = 1.0
 script/script = ExtResource( 1 )
 __meta__ = { "_edit_group_":true }
+shield_level = 100
+shield_on = true
 
 [node name="ship" type="Sprite" parent="."]
 
@@ -85,7 +87,6 @@ transform/pos = Vector2( -30, -25 )
 transform/pos = Vector2( 0, 35 )
 frames = SubResource( 2 )
 animation = "blue"
-frame = 1
 playing = true
 
 [node name="shoot_sound" type="SamplePlayer" parent="."]

@@ -15,8 +15,8 @@ var pos
 var rot = 0
 var vel = Vector2(0, 0)
 var acc = Vector2(0, 0)
-var shield_level = 100
-var shield_on = true
+export var shield_level = 100
+export var shield_on = true
 
 func _ready():
 	screen_size = get_viewport_rect().size
