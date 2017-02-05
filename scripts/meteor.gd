@@ -8,7 +8,7 @@ var sprites = {
 }
 
 var points = {'big': 5, 'med': 10, 'sm': 25, 'tiny': 50}
-var damage = {'big': 45, 'med': 20, 'sm': 15, 'tiny': 5}
+var damage = {'big': 40, 'med': 20, 'sm': 15, 'tiny': 10}
 
 export var SPEED_MIN = 50
 export var SPEED_MAX = 200
@@ -29,7 +29,7 @@ func _ready():
 	pos = Vector2(rand_range(0, screen_size.width), 0)
 	#pos = screen_size / 2
 	rot = rand_range(0, 360)
-	set_rot(deg2rad(rot))
+	set_rotd(rot)
 	rot_speed = rand_range(-ROT_MAX, ROT_MAX)
 	set_pos(pos)
 	set_process(true)
@@ -45,7 +45,7 @@ func choose_sprite(target='big'):
 	mysprite.add_to_group("meteors")
 
 func _process(delta):
-	rot += deg2rad(rot_speed) * delta
+	rot += rot_speed * delta
 	pos += vel * delta
 	# wrap screen - better way?
 	var rect = mysprite.get_texture().get_size()
@@ -58,7 +58,7 @@ func _process(delta):
 	if pos.y > screen_size.height + rect.height / 2:
 		pos.y = -rect.height / 2
 
-	set_rot(rot)
+	set_rotd(rot)
 	set_pos(pos)
 
 func explode():

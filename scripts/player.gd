@@ -3,34 +3,37 @@ extends Area2D
 var bullet = preload("res://player_bullet.tscn")
 onready var bullet_container = get_node("../bullet_container")
 
-var ROT_SPEED = deg2rad(180)  # degrees per sec
+var ROT_SPEED = 180  # degrees per sec
 var THRUST = 900
 var MAX_VEL = 500
 var FRICTION = 0.65
 
 var screen_size
 var can_shoot = true
-var shoot_timer
+onready var shoot_timer = get_node("shoot_timer")
 var pos
 var rot = 0
 var vel = Vector2(0, 0)
 var acc = Vector2(0, 0)
 export var shield_level = 100
 export var shield_on = true
+var gun_count = 2
+var gun_locations = {
+	1: ["muzzle(nose)"],
+	2: ["muzzle(lwing)", "muzzle(rwing)"]
+}
 
 func _ready():
 	screen_size = get_viewport_rect().size
-	shoot_timer = get_node("shoot_timer")
 	shoot_timer.connect("timeout", self, "enable_shoot")
 	pos = screen_size / 2
 	set_pos(pos)
-	set_rot(rot)
+	set_rotd(rot)
 	set_process(true)
 
 func _process(delta):
 	if Input.is_action_pressed("shoot_main") and can_shoot:
-		shoot()
-		#shoot_double()
+		shoot(gun_count)
 		can_shoot = false
 		shoot_timer.start()
 	if Input.is_action_pressed("rotate_left"):
@@ -38,7 +41,7 @@ func _process(delta):
 	if Input.is_action_pressed("rotate_right"):
 		rot -= ROT_SPEED * delta
 	if Input.is_action_pressed("thrust"):
-		acc = Vector2(THRUST, 0).rotated(rot)
+		acc = Vector2(THRUST, 0).rotated(deg2rad(rot))
 		get_node("exhaust").show()
 	else:
 		acc = Vector2(0, 0)
@@ -59,7 +62,7 @@ func _process(delta):
 		pos.y = screen_size.height + ship_size.height / 2
 	if pos.y > screen_size.height + ship_size.height / 2:
 		pos.y = -ship_size.height / 2
-	set_rot(rot - deg2rad(90))
+	set_rotd(rot - 90)
 	set_pos(pos)
 	if shield_level < 0:
 		shield_level = 0
@@ -68,24 +71,23 @@ func _process(delta):
 		get_node("shield").hide()
 		get_node("shield_sounds").play("sfx_sound_shutdown1")
 
-
-func shoot():
-	var new_bullet = bullet.instance()
-	bullet_container.add_child(new_bullet)
-	new_bullet.set_pos(get_node("muzzle(nose)").get_global_pos())
-	get_node("shoot_sound").play("sfx_wpn_laser7")
-
-func shoot_double():
-	for n in ["muzzle(lwing)", "muzzle(rwing)"]:
+func shoot(count):
+	for n in gun_locations[count]:
 		var new_bullet = bullet.instance()
 		bullet_container.add_child(new_bullet)
 		new_bullet.set_pos(get_node(n).get_global_pos())
+		#get_node("shoot_sound").get_sample_library().sample_set_pitch_scale("sfx_wpn_laser7", rand_range(.5, 1.75))
+		get_node("shoot_sound").play("sfx_wpn_laser7")
 
 func enable_shoot():
 	can_shoot = true
 
 func _on_player_area_enter( area ):
 	if area.get_parent().get_groups().has("meteors"):
-		var dmg = area.get_parent().get_parent().damage[area.get_parent().get_parent().size]
-		shield_level -= dmg
-		area.get_parent().get_parent().explode()
+		var meteor = area.get_parent().get_parent()
+		var dmg = meteor.damage[meteor.size]
+		if shield_on:
+			shield_level -= dmg
+			meteor.explode()
+		else:
+			get_tree().reload_current_scene()

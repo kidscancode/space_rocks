@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=1]
+[gd_scene load_steps=21 format=1]
 
 [ext_resource path="res://art/regularExplosion00.png" type="Texture" id=1]
 [ext_resource path="res://art/regularExplosion01.png" type="Texture" id=2]
@@ -9,18 +9,28 @@
 [ext_resource path="res://art/regularExplosion06.png" type="Texture" id=7]
 [ext_resource path="res://art/regularExplosion07.png" type="Texture" id=8]
 [ext_resource path="res://art/regularExplosion08.png" type="Texture" id=9]
-[ext_resource path="res://scripts/explosion.gd" type="Script" id=10]
+[ext_resource path="res://art/sonicExplosion00.png" type="Texture" id=10]
+[ext_resource path="res://art/sonicExplosion01.png" type="Texture" id=11]
+[ext_resource path="res://art/sonicExplosion02.png" type="Texture" id=12]
+[ext_resource path="res://art/sonicExplosion03.png" type="Texture" id=13]
+[ext_resource path="res://art/sonicExplosion04.png" type="Texture" id=14]
+[ext_resource path="res://art/sonicExplosion05.png" type="Texture" id=15]
+[ext_resource path="res://art/sonicExplosion06.png" type="Texture" id=16]
+[ext_resource path="res://art/sonicExplosion07.png" type="Texture" id=17]
+[ext_resource path="res://art/sonicExplosion08.png" type="Texture" id=18]
+[ext_resource path="res://scripts/explosion.gd" type="Script" id=19]
 
 [sub_resource type="SpriteFrames" id=1]
 
-animations = [ { "frames":[ ExtResource( 1 ), ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ) ], "loop":false, "name":"regular", "speed":10.0 } ]
+animations = [ { "frames":[ ExtResource( 1 ), ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ) ], "loop":false, "name":"regular", "speed":10.0 }, { "frames":[ ExtResource( 10 ), ExtResource( 11 ), ExtResource( 12 ), ExtResource( 13 ), ExtResource( 14 ), ExtResource( 15 ), ExtResource( 16 ), ExtResource( 17 ), ExtResource( 18 ) ], "loop":false, "name":"sonic", "speed":12.0 } ]
 
 [node name="explosion" type="AnimatedSprite"]
 
+process/pause_mode = 1
 transform/pos = Vector2( 337.733, 292.48 )
 frames = SubResource( 1 )
 animation = "regular"
-script/script = ExtResource( 10 )
+script/script = ExtResource( 19 )
 
 [connection signal="enter_tree" from="." to="." method="_on_explosion_enter_tree"]
 

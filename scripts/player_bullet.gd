@@ -11,9 +11,9 @@ func _ready():
 	screen_size = get_viewport_rect().size
 	lifetime = get_node("lifetime")
 	lifetime.connect("timeout", self, "die")
-	dir = get_node("../../player").get_rot()
-	set_rot(dir)
-	speed = Vector2(speed, 0).rotated(dir + deg2rad(90))
+	dir = get_node("../../player").get_rotd()
+	set_rotd(dir)
+	speed = Vector2(speed, 0).rotated(deg2rad(dir + 90))
 	set_process(true)
 
 func die():

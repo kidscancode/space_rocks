@@ -3,10 +3,14 @@ extends Node2D
 
 var meteor = preload("res://meteor.tscn")
 var explosion = preload("res://explosion.tscn")
+onready var transition_timer = get_node("transition_timer")
+onready var meteor_container = get_node("meteor_container")
+onready var message_box = get_node("HUD/message")
 
 var screen_size
 var level = 1
 var score = 0
+var paused = false
 var expl_sounds
 
 # HUD GRAPHICS - TODO: move to separate file
@@ -17,14 +21,21 @@ var shield_bar_red = preload("res://art/gui/barHorizontal_red_mid 200.png")
 func _ready():
 	expl_sounds = get_node("explosion_sounds").get_sample_library().get_sample_list()
 	screen_size = get_viewport_rect().size
-	spawn_meteors(3, 'big', screen_size/2, true)
+	#spawn_meteors(3, 'big', screen_size/2, true)
 	set_process(true)
 	get_node("music").play()
+	transition_timer.connect("timeout", self, "transition")
+	transition_timer.start()
+	message_box.set_text("Wave %s" % level)
+	message_box.show()
 
 func _process(delta):
-	if get_node("meteor_container").get_child_count() == 0:
+	if meteor_container.get_child_count() == 0 and transition_timer.get_time_left() == 0:
 		level += 1
-		spawn_meteors(level + 2, 'big', Vector2(0, 0), true)
+		transition_timer.start()
+		message_box.set_text("Wave %s" % level)
+		message_box.show()
+		#spawn_meteors(level + 2, 'big', Vector2(0, 0), true)
 	get_node("HUD/score").set_text(str(score))
 	show_hud_shield()
 
@@ -33,14 +44,14 @@ func show_hud_shield():
 		get_node("HUD/shield_indicator").show()
 		var texture = shield_bar_green
 		var level = get_node("player").shield_level
-		if level < 30:
+		if level < 40:
 			texture = shield_bar_red
-		elif level < 60:
+		elif level < 70:
 			texture = shield_bar_yellow
 		get_node("HUD/shield_indicator/bar").set_progress_texture(texture)
 		get_node("HUD/shield_indicator/bar").set_value(level)
 	else:
-		get_node("HUD/shield_indicator").hide()
+		get_node("HUD/shield_indicator/bar").hide()
 		# TODO: set shield indicator to off
 		pass
 
@@ -60,3 +71,9 @@ func play_explosion(pos):
 	var expl_instance = explosion.instance()
 	add_child(expl_instance)
 	expl_instance.set_pos(pos)
+
+
+func transition():
+	# hide announcement
+	spawn_meteors(level + 2, 'big', Vector2(0, 0), true)
+	message_box.hide()

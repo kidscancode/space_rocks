@@ -37,7 +37,9 @@ __meta__ = { "_edit_group_":true }
 
 [node name="Sprite" type="Sprite" parent="."]
 
+transform/pos = Vector2( 0.0188017, 29.8442 )
 texture = SubResource( 3 )
+offset = Vector2( -0.0188017, -29.8442 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 

@@ -16,7 +16,7 @@
 [sub_resource type="CircleShape2D" id=1]
 
 custom_solver_bias = 0.0
-radius = 24.9676
+radius = 27.8096
 
 [sub_resource type="SpriteFrames" id=2]
 
@@ -30,11 +30,12 @@ samples/sfx_wpn_laser8 = { "db":0.0, "pitch":1.0, "sample":ExtResource( 9 ) }
 
 [sub_resource type="SampleLibrary" id=4]
 
-samples/sfx_sound_shutdown1 = { "db":0.0, "pitch":1.0, "sample":ExtResource( 11 ) }
+samples/sfx_sound_shutdown1 = { "db":5.0, "pitch":1.0, "sample":ExtResource( 11 ) }
 samples/sfx_sounds_powerup18 = { "db":0.0, "pitch":1.0, "sample":ExtResource( 12 ) }
 
 [node name="player" type="Area2D"]
 
+process/pause_mode = 1
 transform/pos = Vector2( 512, 368 )
 input/pickable = true
 shapes/0/shape = SubResource( 1 )
@@ -74,12 +75,10 @@ transform/pos = Vector2( 0, -50 )
 
 [node name="muzzle(rwing)" type="Position2D" parent="."]
 
-visibility/visible = false
 transform/pos = Vector2( 30, -25 )
 
 [node name="muzzle(lwing)" type="Position2D" parent="."]
 
-visibility/visible = false
 transform/pos = Vector2( -30, -25 )
 
 [node name="exhaust" type="AnimatedSprite" parent="."]
@@ -87,6 +86,7 @@ transform/pos = Vector2( -30, -25 )
 transform/pos = Vector2( 0, 35 )
 frames = SubResource( 2 )
 animation = "blue"
+frame = 1
 playing = true
 
 [node name="shoot_sound" type="SamplePlayer" parent="."]
