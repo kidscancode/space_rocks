@@ -3,6 +3,7 @@ extends Node2D
 
 var meteor = preload("res://meteor.tscn")
 var explosion = preload("res://explosion.tscn")
+
 onready var transition_timer = get_node("transition_timer")
 onready var meteor_container = get_node("meteor_container")
 onready var message_box = get_node("HUD/message")
@@ -41,7 +42,7 @@ func _process(delta):
 
 func show_hud_shield():
 	if get_node("player").shield_on:
-		get_node("HUD/shield_indicator").show()
+		get_node("HUD/shield_indicator/bar").show()
 		var texture = shield_bar_green
 		var level = get_node("player").shield_level
 		if level < 40:
@@ -71,7 +72,6 @@ func play_explosion(pos):
 	var expl_instance = explosion.instance()
 	add_child(expl_instance)
 	expl_instance.set_pos(pos)
-
 
 func transition():
 	# hide announcement

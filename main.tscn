@@ -1,44 +1,19 @@
-[gd_scene load_steps=17 format=1]
+[gd_scene load_steps=10 format=1]
 
 [ext_resource path="res://scripts/main.gd" type="Script" id=1]
 [ext_resource path="res://art/starfield.png" type="Texture" id=2]
 [ext_resource path="res://player.tscn" type="PackedScene" id=3]
-[ext_resource path="res://fonts/KenVector Future.ttf" type="DynamicFontData" id=4]
-[ext_resource path="res://art/sheet.shield_gold.atex" type="Texture" id=5]
-[ext_resource path="res://art/gui/barHorizontal_shadow_mid.png" type="Texture" id=6]
-[ext_resource path="res://art/gui/barHorizontal_green_mid 200.png" type="Texture" id=7]
-[ext_resource path="res://pause_toggle.gd" type="Script" id=8]
-[ext_resource path="res://audio/sfx_exp_short_hard12.wav" type="Sample" id=9]
-[ext_resource path="res://audio/sfx_exp_short_hard16.wav" type="Sample" id=10]
-[ext_resource path="res://audio/sfx_exp_shortest_hard1.wav" type="Sample" id=11]
-[ext_resource path="res://audio/SimpleBeat.ogg" type="AudioStream" id=12]
+[ext_resource path="res://HUD.tscn" type="PackedScene" id=4]
+[ext_resource path="res://audio/sfx_exp_short_hard12.wav" type="Sample" id=5]
+[ext_resource path="res://audio/sfx_exp_short_hard16.wav" type="Sample" id=6]
+[ext_resource path="res://audio/sfx_exp_shortest_hard1.wav" type="Sample" id=7]
+[ext_resource path="res://audio/SimpleBeat.ogg" type="AudioStream" id=8]
 
-[sub_resource type="DynamicFont" id=2]
+[sub_resource type="SampleLibrary" id=4]
 
-font/size = 48
-font/use_mipmaps = false
-font/use_filter = false
-font/font = ExtResource( 4 )
-
-[sub_resource type="DynamicFont" id=3]
-
-font/size = 52
-font/use_mipmaps = false
-font/use_filter = false
-font/font = ExtResource( 4 )
-
-[sub_resource type="DynamicFont" id=4]
-
-font/size = 52
-font/use_mipmaps = false
-font/use_filter = false
-font/font = ExtResource( 4 )
-
-[sub_resource type="SampleLibrary" id=1]
-
-samples/sfx_exp_short_hard12 = { "db":0.0, "pitch":1.0, "sample":ExtResource( 9 ) }
-samples/sfx_exp_short_hard16 = { "db":0.0, "pitch":1.0, "sample":ExtResource( 10 ) }
-samples/sfx_exp_shortest_hard1 = { "db":0.0, "pitch":1.0, "sample":ExtResource( 11 ) }
+samples/sfx_exp_short_hard12 = { "db":0.0, "pitch":1.0, "sample":ExtResource( 5 ) }
+samples/sfx_exp_short_hard16 = { "db":0.0, "pitch":1.0, "sample":ExtResource( 6 ) }
+samples/sfx_exp_shortest_hard1 = { "db":0.0, "pitch":1.0, "sample":ExtResource( 7 ) }
 
 [node name="main" type="Node2D"]
 
@@ -59,142 +34,12 @@ centered = false
 
 [node name="meteor_container" type="Node2D" parent="."]
 
-[node name="HUD" type="CanvasLayer" parent="."]
-
-layer = 1
-offset = Vector2( 0, 0 )
-rotation = 0.0
-scale = Vector2( 1, 1 )
-
-[node name="score" type="Label" parent="HUD"]
-
-anchor/left = 3
-anchor/right = 3
-focus/ignore_mouse = true
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 0
-margin/left = 200.0
-margin/top = 25.0
-margin/right = -200.0
-margin/bottom = 100.0
-custom_fonts/font = SubResource( 2 )
-text = "0"
-align = 1
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
-
-[node name="message" type="Label" parent="HUD"]
-
-anchor/right = 1
-anchor/bottom = 1
-focus/ignore_mouse = true
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 0
-margin/left = 0.0
-margin/top = 0.0
-margin/right = 0.0
-margin/bottom = 0.0
-custom_fonts/font = SubResource( 3 )
-text = "Wave 1"
-align = 1
-valign = 1
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
-
-[node name="shield_indicator" type="HBoxContainer" parent="HUD"]
-
-editor/display_folded = true
-focus/ignore_mouse = false
-focus/stop_mouse = false
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 25.0
-margin/top = 25.0
-margin/right = 275.0
-margin/bottom = 55.0
-alignment = 0
-
-[node name="icon" type="TextureFrame" parent="HUD/shield_indicator"]
-
-focus/ignore_mouse = true
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 0.0
-margin/top = 0.0
-margin/right = 30.0
-margin/bottom = 30.0
-texture = ExtResource( 5 )
-stretch_mode = 4
-
-[node name="bar" type="TextureProgress" parent="HUD/shield_indicator"]
-
-focus/ignore_mouse = false
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 34.0
-margin/top = 0.0
-margin/right = 50.0
-margin/bottom = 30.0
-range/min = 0.0
-range/max = 100.0
-range/step = 1.0
-range/page = 0.0
-range/value = 50.0
-range/exp_edit = false
-range/rounded = false
-texture/under = ExtResource( 6 )
-texture/over = null
-texture/progress = ExtResource( 7 )
-radial_fill/fill_degrees = 360.0
-radial_fill/center_offset = Vector2( 0, 0 )
-
-[node name="pause_popup" type="Panel" parent="HUD"]
-
-process/pause_mode = 2
-visibility/visible = false
-visibility/self_opacity = 0.4
-anchor/right = 1
-anchor/bottom = 1
-focus/ignore_mouse = false
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 0.0
-margin/top = 0.0
-margin/right = 0.0
-margin/bottom = 0.0
-script/script = ExtResource( 8 )
-
-[node name="pause_text" type="Label" parent="HUD/pause_popup"]
-
-anchor/right = 1
-anchor/bottom = 1
-focus/ignore_mouse = true
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 0
-margin/left = 0.0
-margin/top = 0.0
-margin/right = 0.0
-margin/bottom = 0.0
-custom_fonts/font = SubResource( 4 )
-text = "Paused"
-align = 1
-valign = 1
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
+[node name="HUD" parent="." instance=ExtResource( 4 )]
 
 [node name="explosion_sounds" type="SamplePlayer" parent="."]
 
 config/polyphony = 1
-config/samples = SubResource( 1 )
+config/samples = SubResource( 4 )
 default/volume_db = 0.0
 default/pitch_scale = 1.0
 default/pan = 0.0
@@ -210,7 +55,7 @@ default/chorus_send = 0.0
 
 [node name="music" type="StreamPlayer" parent="."]
 
-stream/stream = ExtResource( 12 )
+stream/stream = ExtResource( 8 )
 stream/play = false
 stream/loop = true
 stream/volume_db = 5.0

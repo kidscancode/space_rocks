@@ -9,5 +9,6 @@ __meta__ = { "_edit_group_":true }
 SPEED_MIN = 50
 SPEED_MAX = 200
 ROT_MAX = 120
+POW_CHANCE = 5
 
 

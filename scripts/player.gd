@@ -90,3 +90,10 @@ func _on_player_area_enter( area ):
 			meteor.explode()
 		else:
 			get_tree().reload_current_scene()
+	if area.get_groups().has("powerups"):
+		if area.type == 'shield':
+			shield_on = true
+			if shield_level < 100:
+				shield_level = min(shield_level + 20, 100)
+				get_node("shield_sounds").play("sfx_sounds_powerup18")
+		area.pickup()

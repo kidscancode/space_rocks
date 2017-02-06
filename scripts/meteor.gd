@@ -1,5 +1,8 @@
 extends Node2D
 
+onready var main_scene = get_node("/root/main")
+var powerup = preload("res://powerup.tscn")
+
 var sprites = {
 	'big': ['big1', 'big2', 'big3', 'big4'],
 	'med': ['med1', 'med2'],
@@ -13,6 +16,7 @@ var damage = {'big': 40, 'med': 20, 'sm': 15, 'tiny': 10}
 export var SPEED_MIN = 50
 export var SPEED_MAX = 200
 export var ROT_MAX = 120
+export var POW_CHANCE = 5  # from 100
 
 var vel
 var pos
@@ -25,7 +29,7 @@ var size
 func _ready():
 	screen_size = get_viewport_rect().size
 	#choose_sprite(size)
-	vel = Vector2(rand_range(SPEED_MIN, SPEED_MAX), 0).rotated(rand_range(0, 360))
+	vel = Vector2(rand_range(SPEED_MIN, SPEED_MAX), 0).rotated(rand_range(0, 2*PI))
 	pos = Vector2(rand_range(0, screen_size.width), 0)
 	#pos = screen_size / 2
 	rot = rand_range(0, 360)
@@ -68,7 +72,14 @@ func explode():
 			newsize = 'sm'
 		elif size == 'sm':
 			newsize = 'tiny'
-		get_node("/root/main").spawn_meteors(2, newsize, pos, false, vel)
+		main_scene.spawn_meteors(2, newsize, pos, false, vel)
+	spawn_powerup()
 	queue_free()
-	get_node("/root/main").score += points[size]
-	get_node("/root/main").play_explosion(pos)
+	main_scene.score += points[size]
+	main_scene.play_explosion(pos)
+
+func spawn_powerup():
+	if randi() % 100 < POW_CHANCE:
+		var pow_instance = powerup.instance()
+		main_scene.add_child(pow_instance)
+		pow_instance.pos = pos
