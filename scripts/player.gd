@@ -76,7 +76,6 @@ func shoot(count):
 		var new_bullet = bullet.instance()
 		bullet_container.add_child(new_bullet)
 		new_bullet.set_pos(get_node(n).get_global_pos())
-		#get_node("shoot_sound").get_sample_library().sample_set_pitch_scale("sfx_wpn_laser7", rand_range(.5, 1.75))
 		get_node("shoot_sound").play("sfx_wpn_laser7")
 
 func enable_shoot():
