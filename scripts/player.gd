@@ -1,12 +1,16 @@
 extends Area2D
 
 var bullet = preload("res://player_bullet.tscn")
+var bomb = preload("res://bomb.tscn")
 onready var bullet_container = get_node("../bullet_container")
 
-var ROT_SPEED = 180  # degrees per sec
-var THRUST = 900
-var MAX_VEL = 500
-var FRICTION = 0.65
+export var ROT_SPEED = 180  # degrees per sec
+export var THRUST = 700
+export var MAX_VEL = 400
+export var FRICTION = 0.65
+export var SHIELD_REGEN = 5
+export var shield_level = 100
+export var shield_on = true
 
 var screen_size
 var can_shoot = true
@@ -15,12 +19,12 @@ var pos
 var rot = 0
 var vel = Vector2(0, 0)
 var acc = Vector2(0, 0)
-export var shield_level = 100
-export var shield_on = true
-var gun_count = 2
+var bomb_active = true
+var gun_count = 3
 var gun_locations = {
 	1: ["muzzle(nose)"],
-	2: ["muzzle(lwing)", "muzzle(rwing)"]
+	2: ["muzzle(lwing)", "muzzle(rwing)"],
+	3: ["muzzle(nose)", "muzzle(lwing)", "muzzle(rwing)"]
 }
 
 func _ready():
@@ -32,10 +36,14 @@ func _ready():
 	set_process(true)
 
 func _process(delta):
+	#shield_level += delta * 2
+	shield_level = min(shield_level + delta * SHIELD_REGEN, 100)
 	if Input.is_action_pressed("shoot_main") and can_shoot:
 		shoot(gun_count)
 		can_shoot = false
 		shoot_timer.start()
+	if Input.is_action_pressed("shoot_special") and bomb_active:
+		launch_bomb()
 	if Input.is_action_pressed("rotate_left"):
 		rot += ROT_SPEED * delta
 	if Input.is_action_pressed("rotate_right"):
@@ -76,10 +84,20 @@ func shoot(count):
 		var new_bullet = bullet.instance()
 		bullet_container.add_child(new_bullet)
 		new_bullet.set_pos(get_node(n).get_global_pos())
+		var dir = get_rotd() + get_node(n).get_rotd()
+		new_bullet.set_rotd(dir)
+		new_bullet.vel = Vector2(new_bullet.speed, 0).rotated(deg2rad(dir + 90))
 		get_node("shoot_sound").play("sfx_wpn_laser7")
 
 func enable_shoot():
 	can_shoot = true
+
+func launch_bomb():
+	var new_bomb = bomb.instance()
+	bullet_container.add_child(new_bomb)
+	new_bomb.set_pos(get_node("muzzle(tail)").get_global_pos())
+	var dir = get_rotd()
+	new_bomb.vel = Vector2(-new_bomb.SPEED, 0).rotated(deg2rad(dir + 90))
 
 func _on_player_area_enter( area ):
 	if area.get_parent().get_groups().has("meteors"):

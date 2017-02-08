@@ -31,7 +31,7 @@ samples/sfx_wpn_laser8 = { "db":0.0, "pitch":1.0, "sample":ExtResource( 9 ) }
 [sub_resource type="SampleLibrary" id=4]
 
 samples/sfx_sound_shutdown1 = { "db":5.0, "pitch":1.0, "sample":ExtResource( 11 ) }
-samples/sfx_sounds_powerup18 = { "db":0.0, "pitch":1.0, "sample":ExtResource( 12 ) }
+samples/sfx_sounds_powerup18 = { "db":-2.0, "pitch":1.0, "sample":ExtResource( 12 ) }
 
 [node name="player" type="Area2D"]
 
@@ -47,6 +47,11 @@ linear_damp = 0.1
 angular_damp = 1.0
 script/script = ExtResource( 1 )
 __meta__ = { "_edit_group_":true }
+ROT_SPEED = 180
+THRUST = 700
+MAX_VEL = 400
+FRICTION = 0.65
+SHIELD_REGEN = 5
 shield_level = 100
 shield_on = true
 
@@ -73,19 +78,26 @@ autostart = false
 
 transform/pos = Vector2( 0, -50 )
 
+[node name="muzzle(tail)" type="Position2D" parent="."]
+
+transform/pos = Vector2( 0, 30 )
+
 [node name="muzzle(rwing)" type="Position2D" parent="."]
 
 transform/pos = Vector2( 30, -25 )
+transform/rot = -5.0
 
 [node name="muzzle(lwing)" type="Position2D" parent="."]
 
 transform/pos = Vector2( -30, -25 )
+transform/rot = 5.0
 
 [node name="exhaust" type="AnimatedSprite" parent="."]
 
 transform/pos = Vector2( 0, 35 )
 frames = SubResource( 2 )
 animation = "blue"
+frame = 1
 playing = true
 
 [node name="shoot_sound" type="SamplePlayer" parent="."]
@@ -107,7 +119,7 @@ default/chorus_send = 0.0
 
 [node name="shield" type="Sprite" parent="."]
 
-transform/scale = Vector2( 0.6, 0.6 )
+transform/scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 10 )
 
 [node name="shield_sounds" type="SamplePlayer2D" parent="."]

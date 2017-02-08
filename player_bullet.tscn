@@ -5,7 +5,7 @@
 [sub_resource type="CapsuleShape2D" id=1]
 
 custom_solver_bias = 0.0
-radius = 2.78323
+radius = 5.03604
 height = 46.5033
 
 [sub_resource type="ImageTexture" id=2]

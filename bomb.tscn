@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=1]
+[gd_scene load_steps=8 format=1]
 
 [ext_resource path="res://scripts/bomb.gd" type="Script" id=1]
 [ext_resource path="res://art/sheet.laserRed08.atex" type="Texture" id=2]
 [ext_resource path="res://art/sheet.laserRed09.atex" type="Texture" id=3]
+[ext_resource path="res://art/beams.png" type="Texture" id=4]
 
 [sub_resource type="CircleShape2D" id=1]
 
@@ -11,7 +12,13 @@ radius = 8.62109
 
 [sub_resource type="SpriteFrames" id=2]
 
-animations = [ { "frames":[ ExtResource( 2 ), ExtResource( 3 ), ExtResource( 3 ) ], "loop":true, "name":"default", "speed":2.0 } ]
+animations = [ { "frames":[ ExtResource( 2 ), ExtResource( 3 ), ExtResource( 3 ) ], "loop":true, "name":"default", "speed":2.0 }, { "frames":[  ], "loop":true, "name":"New Anim 1", "speed":5.0 } ]
+
+[sub_resource type="AtlasTexture" id=3]
+
+atlas = ExtResource( 4 )
+region = Rect2( 37, 116, 17, 17 )
+margin = Rect2( 0, 0, 0, 0 )
 
 [node name="bomb" type="Area2D"]
 
@@ -40,5 +47,17 @@ playing = true
 shape = SubResource( 1 )
 trigger = false
 _update_shape_index = 0
+
+[node name="Sprite" type="Sprite" parent="."]
+
+transform/scale = Vector2( 1.3, 1.3 )
+texture = SubResource( 3 )
+
+[node name="lifetime" type="Timer" parent="."]
+
+process_mode = 1
+wait_time = 1.0
+one_shot = false
+autostart = false
 
 

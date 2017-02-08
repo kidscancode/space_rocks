@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=1]
+[gd_scene load_steps=10 format=1]
 
 [ext_resource path="res://fonts/KenVector Future.ttf" type="DynamicFontData" id=1]
-[ext_resource path="res://art/sheet.shield_gold.atex" type="Texture" id=2]
-[ext_resource path="res://art/gui/barHorizontal_shadow_mid.png" type="Texture" id=3]
-[ext_resource path="res://art/gui/barHorizontal_green_mid 200.png" type="Texture" id=4]
-[ext_resource path="res://pause_toggle.gd" type="Script" id=5]
+[ext_resource path="res://art/sheet.playerLife2_orange.atex" type="Texture" id=2]
+[ext_resource path="res://art/sheet.shield_gold.atex" type="Texture" id=3]
+[ext_resource path="res://art/gui/barHorizontal_shadow_mid.png" type="Texture" id=4]
+[ext_resource path="res://art/gui/barHorizontal_green_mid 200.png" type="Texture" id=5]
+[ext_resource path="res://pause_toggle.gd" type="Script" id=6]
 
 [sub_resource type="DynamicFont" id=1]
 
@@ -73,6 +74,22 @@ percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
+[node name="lives_indicator" type="TextureFrame" parent="."]
+
+visibility/visible = false
+anchor/left = 1
+anchor/right = 1
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 132.0
+margin/top = 37.0
+margin/right = 95.0
+margin/bottom = 63.0
+texture = ExtResource( 2 )
+stretch_mode = 0
+
 [node name="shield_indicator" type="HBoxContainer" parent="."]
 
 editor/display_folded = true
@@ -96,7 +113,7 @@ margin/left = 0.0
 margin/top = 0.0
 margin/right = 30.0
 margin/bottom = 30.0
-texture = ExtResource( 2 )
+texture = ExtResource( 3 )
 stretch_mode = 4
 
 [node name="bar" type="TextureProgress" parent="shield_indicator"]
@@ -116,9 +133,9 @@ range/page = 0.0
 range/value = 50.0
 range/exp_edit = false
 range/rounded = false
-texture/under = ExtResource( 3 )
+texture/under = ExtResource( 4 )
 texture/over = null
-texture/progress = ExtResource( 4 )
+texture/progress = ExtResource( 5 )
 radial_fill/fill_degrees = 360.0
 radial_fill/center_offset = Vector2( 0, 0 )
 
@@ -127,17 +144,19 @@ radial_fill/center_offset = Vector2( 0, 0 )
 process/pause_mode = 2
 visibility/visible = false
 visibility/self_opacity = 0.4
-anchor/right = 1
-anchor/bottom = 1
+anchor/left = 3
+anchor/top = 3
+anchor/right = 3
+anchor/bottom = 3
 focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
-margin/left = 0.0
-margin/top = 0.0
-margin/right = 0.0
-margin/bottom = 0.0
-script/script = ExtResource( 5 )
+margin/left = 512.0
+margin/top = 384.0
+margin/right = -512.0
+margin/bottom = -384.0
+script/script = ExtResource( 6 )
 
 [node name="pause_text" type="Label" parent="pause_popup"]
 

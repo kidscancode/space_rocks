@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=1]
+[gd_scene load_steps=7 format=1]
 
 [ext_resource path="res://scripts/powerup.gd" type="Script" id=1]
-[ext_resource path="res://art/sheet.shield_gold.atex" type="Texture" id=2]
-[ext_resource path="res://art/sheet.bolt_gold.atex" type="Texture" id=3]
+[ext_resource path="res://art/sheet.bolt_gold.atex" type="Texture" id=2]
+[ext_resource path="res://art/sheet.shield_gold.atex" type="Texture" id=3]
+[ext_resource path="res://art/sheet.pill_green.atex" type="Texture" id=4]
 
 [sub_resource type="CircleShape2D" id=1]
 
@@ -11,7 +12,7 @@ radius = 17.1396
 
 [sub_resource type="SpriteFrames" id=2]
 
-animations = [ { "frames":[ ExtResource( 2 ) ], "loop":true, "name":"shield", "speed":5.0 }, { "frames":[ ExtResource( 3 ) ], "loop":false, "name":"bolt", "speed":5.0 } ]
+animations = [ { "frames":[ ExtResource( 2 ) ], "loop":false, "name":"bolt", "speed":5.0 }, { "frames":[ ExtResource( 3 ) ], "loop":false, "name":"shield", "speed":5.0 }, { "frames":[ ExtResource( 4 ) ], "loop":true, "name":"thing", "speed":2.0 } ]
 
 [node name="powerup" type="Area2D"]
 
@@ -31,7 +32,7 @@ __meta__ = { "_edit_group_":true }
 
 transform/scale = Vector2( 1.2, 1.2 )
 frames = SubResource( 2 )
-animation = "shield"
+animation = "thing"
 
 [node name="collision" type="CollisionShape2D" parent="."]
 

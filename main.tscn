@@ -9,7 +9,7 @@
 [ext_resource path="res://audio/sfx_exp_shortest_hard1.wav" type="Sample" id=7]
 [ext_resource path="res://audio/SimpleBeat.ogg" type="AudioStream" id=8]
 
-[sub_resource type="SampleLibrary" id=4]
+[sub_resource type="SampleLibrary" id=1]
 
 samples/sfx_exp_short_hard12 = { "db":0.0, "pitch":1.0, "sample":ExtResource( 5 ) }
 samples/sfx_exp_short_hard16 = { "db":0.0, "pitch":1.0, "sample":ExtResource( 6 ) }
@@ -30,6 +30,9 @@ centered = false
 
 [node name="player" parent="." instance=ExtResource( 3 )]
 
+THRUST = 900
+MAX_VEL = 500
+
 [node name="bullet_container" type="Node2D" parent="."]
 
 [node name="meteor_container" type="Node2D" parent="."]
@@ -39,7 +42,7 @@ centered = false
 [node name="explosion_sounds" type="SamplePlayer" parent="."]
 
 config/polyphony = 1
-config/samples = SubResource( 4 )
+config/samples = SubResource( 1 )
 default/volume_db = 0.0
 default/pitch_scale = 1.0
 default/pan = 0.0

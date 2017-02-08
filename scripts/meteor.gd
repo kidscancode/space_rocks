@@ -13,9 +13,9 @@ var sprites = {
 var points = {'big': 5, 'med': 10, 'sm': 25, 'tiny': 50}
 var damage = {'big': 40, 'med': 20, 'sm': 15, 'tiny': 10}
 
-export var SPEED_MIN = 50
-export var SPEED_MAX = 200
-export var ROT_MAX = 120
+export var SPEED_MIN = 30
+export var SPEED_MAX = 150
+export var ROT_MAX = 110
 export var POW_CHANCE = 5  # from 100
 
 var vel
@@ -28,10 +28,8 @@ var size
 
 func _ready():
 	screen_size = get_viewport_rect().size
-	#choose_sprite(size)
 	vel = Vector2(rand_range(SPEED_MIN, SPEED_MAX), 0).rotated(rand_range(0, 2*PI))
 	pos = Vector2(rand_range(0, screen_size.width), 0)
-	#pos = screen_size / 2
 	rot = rand_range(0, 360)
 	set_rotd(rot)
 	rot_speed = rand_range(-ROT_MAX, ROT_MAX)
