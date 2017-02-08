@@ -14,13 +14,14 @@ export var shield_on = true
 
 var screen_size
 var can_shoot = true
+onready var bomb_timer = get_node("bomb_timer")
 onready var shoot_timer = get_node("shoot_timer")
 var pos
 var rot = 0
 var vel = Vector2(0, 0)
 var acc = Vector2(0, 0)
 var bomb_active = true
-var gun_count = 3
+var gun_count = 1
 var gun_locations = {
 	1: ["muzzle(nose)"],
 	2: ["muzzle(lwing)", "muzzle(rwing)"],
@@ -30,6 +31,7 @@ var gun_locations = {
 func _ready():
 	screen_size = get_viewport_rect().size
 	shoot_timer.connect("timeout", self, "enable_shoot")
+	bomb_timer.connect("timeout", self, "enable_bomb")
 	pos = screen_size / 2
 	set_pos(pos)
 	set_rotd(rot)
@@ -44,6 +46,8 @@ func _process(delta):
 		shoot_timer.start()
 	if Input.is_action_pressed("shoot_special") and bomb_active:
 		launch_bomb()
+		bomb_active = false
+		bomb_timer.start()
 	if Input.is_action_pressed("rotate_left"):
 		rot += ROT_SPEED * delta
 	if Input.is_action_pressed("rotate_right"):
@@ -92,12 +96,16 @@ func shoot(count):
 func enable_shoot():
 	can_shoot = true
 
+func enable_bomb():
+	bomb_active = true
+
 func launch_bomb():
 	var new_bomb = bomb.instance()
 	bullet_container.add_child(new_bomb)
 	new_bomb.set_pos(get_node("muzzle(tail)").get_global_pos())
 	var dir = get_rotd()
 	new_bomb.vel = Vector2(-new_bomb.SPEED, 0).rotated(deg2rad(dir + 90))
+	get_node("shoot_sound").play("sfx_wpn_laser6")
 
 func _on_player_area_enter( area ):
 	if area.get_parent().get_groups().has("meteors"):

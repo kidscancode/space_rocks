@@ -74,7 +74,7 @@ func explode():
 	spawn_powerup()
 	queue_free()
 	main_scene.score += points[size]
-	main_scene.play_explosion(pos)
+	main_scene.play_explosion(pos, "regular")
 
 func spawn_powerup():
 	if randi() % 100 < POW_CHANCE:

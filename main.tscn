@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=1]
+[gd_scene load_steps=11 format=1]
 
 [ext_resource path="res://scripts/main.gd" type="Script" id=1]
 [ext_resource path="res://art/starfield.png" type="Texture" id=2]
@@ -7,13 +7,15 @@
 [ext_resource path="res://audio/sfx_exp_short_hard12.wav" type="Sample" id=5]
 [ext_resource path="res://audio/sfx_exp_short_hard16.wav" type="Sample" id=6]
 [ext_resource path="res://audio/sfx_exp_shortest_hard1.wav" type="Sample" id=7]
-[ext_resource path="res://audio/SimpleBeat.ogg" type="AudioStream" id=8]
+[ext_resource path="res://audio/sfx_wpn_cannon2.wav" type="Sample" id=8]
+[ext_resource path="res://audio/SimpleBeat.ogg" type="AudioStream" id=9]
 
 [sub_resource type="SampleLibrary" id=1]
 
-samples/sfx_exp_short_hard12 = { "db":0.0, "pitch":1.0, "sample":ExtResource( 5 ) }
-samples/sfx_exp_short_hard16 = { "db":0.0, "pitch":1.0, "sample":ExtResource( 6 ) }
-samples/sfx_exp_shortest_hard1 = { "db":0.0, "pitch":1.0, "sample":ExtResource( 7 ) }
+samples/small1 = { "db":-2.0, "pitch":1.0, "sample":ExtResource( 5 ) }
+samples/small2 = { "db":-2.0, "pitch":1.0, "sample":ExtResource( 6 ) }
+samples/small3 = { "db":-2.0, "pitch":1.0, "sample":ExtResource( 7 ) }
+samples/sonic = { "db":2.0, "pitch":1.0, "sample":ExtResource( 8 ) }
 
 [node name="main" type="Node2D"]
 
@@ -58,7 +60,7 @@ default/chorus_send = 0.0
 
 [node name="music" type="StreamPlayer" parent="."]
 
-stream/stream = ExtResource( 8 )
+stream/stream = ExtResource( 9 )
 stream/play = false
 stream/loop = true
 stream/volume_db = 5.0

@@ -20,7 +20,8 @@ var shield_bar_yellow = preload("res://art/gui/barHorizontal_yellow_mid 200.png"
 var shield_bar_red = preload("res://art/gui/barHorizontal_red_mid 200.png")
 
 func _ready():
-	expl_sounds = get_node("explosion_sounds").get_sample_library().get_sample_list()
+	#expl_sounds = get_node("explosion_sounds").get_sample_library().get_sample_list()
+	expl_sounds = ['small1', 'small2', 'small3']
 	screen_size = get_viewport_rect().size
 	#spawn_meteors(3, 'big', screen_size/2, true)
 	set_process(true)
@@ -67,10 +68,14 @@ func spawn_meteors(num, size, loc, rand=false, vel=Vector2(0, 0)):
 			meteor_instance.pos = loc
 		meteor_instance.vel += vel
 
-func play_explosion(pos):
-	get_node("explosion_sounds").play(expl_sounds[randi() % expl_sounds.size()])
+func play_explosion(pos, type):
+	if type == 'regular':
+		get_node("explosion_sounds").play(expl_sounds[randi() % expl_sounds.size()])
+	elif type == 'sonic':
+		get_node("explosion_sounds").play('sonic')
 	var expl_instance = explosion.instance()
 	add_child(expl_instance)
+	expl_instance.set_animation(type)
 	expl_instance.set_pos(pos)
 
 func transition():
