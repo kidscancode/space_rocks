@@ -16,6 +16,7 @@ var screen_size
 var can_shoot = true
 onready var bomb_timer = get_node("bomb_timer")
 onready var shoot_timer = get_node("shoot_timer")
+onready var pow_timer = get_node("pow_timer")
 var pos
 var rot = 0
 var vel = Vector2(0, 0)
@@ -32,6 +33,7 @@ func _ready():
 	screen_size = get_viewport_rect().size
 	shoot_timer.connect("timeout", self, "enable_shoot")
 	bomb_timer.connect("timeout", self, "enable_bomb")
+	pow_timer.connect("timeout", self, "pow_timeout")
 	pos = screen_size / 2
 	set_pos(pos)
 	set_rotd(rot)
@@ -81,7 +83,7 @@ func _process(delta):
 	if shield_level == 0 and shield_on:
 		shield_on = false
 		get_node("shield").hide()
-		get_node("shield_sounds").play("sfx_sound_shutdown1")
+		get_node("pow_sounds").play("shield_down")
 
 func shoot(count):
 	for n in gun_locations[count]:
@@ -91,13 +93,18 @@ func shoot(count):
 		var dir = get_rotd() + get_node(n).get_rotd()
 		new_bullet.set_rotd(dir)
 		new_bullet.vel = Vector2(new_bullet.speed, 0).rotated(deg2rad(dir + 90))
-		get_node("shoot_sound").play("sfx_wpn_laser7")
+		get_node("shoot_sound").play("Laser_09")
 
 func enable_shoot():
 	can_shoot = true
 
 func enable_bomb():
 	bomb_active = true
+
+func pow_timeout():
+	gun_count = max(1, gun_count - 1)
+	get_node("pow_sounds").play("gun_up")
+	#print("gun downgraded")
 
 func launch_bomb():
 	var new_bomb = bomb.instance()
@@ -121,5 +128,11 @@ func _on_player_area_enter( area ):
 			shield_on = true
 			if shield_level < 100:
 				shield_level = min(shield_level + 20, 100)
-				get_node("shield_sounds").play("sfx_sounds_powerup18")
+				get_node("pow_sounds").play("shield_up")
+
+		if area.type == 'bolt':
+			gun_count = min(gun_count + 1, 3)
+			pow_timer.set_wait_time(10)
+			pow_timer.start()
+			get_node("pow_sounds").play("gun_up")
 		area.pickup()

@@ -29,7 +29,7 @@ animations = [ { "frames":[ ExtResource( 1 ), ExtResource( 2 ), ExtResource( 3 )
 process/pause_mode = 1
 transform/pos = Vector2( 337.733, 292.48 )
 frames = SubResource( 1 )
-animation = "regular"
+animation = "sonic"
 script/script = ExtResource( 19 )
 
 [connection signal="enter_tree" from="." to="." method="_on_explosion_enter_tree"]

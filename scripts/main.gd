@@ -11,7 +11,7 @@ onready var message_box = get_node("HUD/message")
 var screen_size
 var level = 1
 var score = 0
-var paused = false
+#var paused = false
 var expl_sounds
 
 # HUD GRAPHICS - TODO: move to separate file
