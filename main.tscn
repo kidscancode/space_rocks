@@ -15,7 +15,7 @@
 samples/small1 = { "db":-2.0, "pitch":1.0, "sample":ExtResource( 5 ) }
 samples/small2 = { "db":-2.0, "pitch":1.0, "sample":ExtResource( 6 ) }
 samples/small3 = { "db":-2.0, "pitch":1.0, "sample":ExtResource( 7 ) }
-samples/sonic = { "db":2.0, "pitch":1.0, "sample":ExtResource( 8 ) }
+samples/sonic = { "db":7.0, "pitch":1.0, "sample":ExtResource( 8 ) }
 
 [node name="main" type="Node2D"]
 
@@ -31,9 +31,6 @@ texture = ExtResource( 2 )
 centered = false
 
 [node name="player" parent="." instance=ExtResource( 3 )]
-
-THRUST = 900
-MAX_VEL = 500
 
 [node name="bullet_container" type="Node2D" parent="."]
 

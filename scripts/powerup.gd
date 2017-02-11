@@ -3,7 +3,7 @@ extends Area2D
 onready var timer = get_node("lifetime")
 
 const SPEED = 80
-var types = ['bolt', 'shield', 'thing']
+var types = ['bolt', 'shield', 'pill', 'pill']
 
 var vel = Vector2()
 var pos = Vector2()

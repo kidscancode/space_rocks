@@ -33,13 +33,21 @@ func _ready():
 
 func _process(delta):
 	if meteor_container.get_child_count() == 0 and transition_timer.get_time_left() == 0:
-		level += 1
-		transition_timer.start()
-		message_box.set_text("Wave %s" % level)
-		message_box.show()
+		#global.goto_scene("res://shop.tscn")
+		begin_next_level()
+		#level += 1
+		#transition_timer.start()
+		#message_box.set_text("Wave %s" % level)
+		#message_box.show()
 		#spawn_meteors(level + 2, 'big', Vector2(0, 0), true)
 	get_node("HUD/score").set_text(str(score))
 	show_hud_shield()
+
+func begin_next_level():
+	level += 1
+	transition_timer.start()
+	message_box.set_text("Wave %s" % level)
+	message_box.show()
 
 func show_hud_shield():
 	if get_node("player").shield_on:

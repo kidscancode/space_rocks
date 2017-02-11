@@ -4,13 +4,18 @@ var bullet = preload("res://player_bullet.tscn")
 var bomb = preload("res://bomb.tscn")
 onready var bullet_container = get_node("../bullet_container")
 
-export var ROT_SPEED = 180  # degrees per sec
-export var THRUST = 700
-export var MAX_VEL = 400
-export var FRICTION = 0.65
-export var SHIELD_REGEN = 5
-export var shield_level = 100
-export var shield_on = true
+var thrust_level = {1: 500, 2: 600, 3: 700, 4: 800}
+var rot_level = {1: 100, 2: 150, 3: 180, 4: 210}
+var shield_regen = {1: 5, 2: 7.5, 3: 10, 4: 15}
+var fire_rate = {}
+
+var ROT_SPEED = 180  # degrees per sec
+var THRUST = 500
+var MAX_VEL = 400
+var FRICTION = 0.65
+var SHIELD_REGEN = 5
+var shield_level = 100
+var shield_on = true
 
 var screen_size
 var can_shoot = true
@@ -29,6 +34,8 @@ var gun_locations = {
 	3: ["muzzle(nose)", "muzzle(lwing)", "muzzle(rwing)"]
 }
 
+
+
 func _ready():
 	screen_size = get_viewport_rect().size
 	shoot_timer.connect("timeout", self, "enable_shoot")
@@ -40,8 +47,7 @@ func _ready():
 	set_process(true)
 
 func _process(delta):
-	#shield_level += delta * 2
-	shield_level = min(shield_level + delta * SHIELD_REGEN, 100)
+	shield_level = min(shield_level + SHIELD_REGEN * delta, 100)
 	if Input.is_action_pressed("shoot_main") and can_shoot:
 		shoot(gun_count)
 		can_shoot = false
@@ -93,7 +99,7 @@ func shoot(count):
 		var dir = get_rotd() + get_node(n).get_rotd()
 		new_bullet.set_rotd(dir)
 		new_bullet.vel = Vector2(new_bullet.speed, 0).rotated(deg2rad(dir + 90))
-		get_node("shoot_sound").play("Laser_09")
+		get_node("shoot_sound").play("sfx_wpn_laser7")
 
 func enable_shoot():
 	can_shoot = true
@@ -103,7 +109,7 @@ func enable_bomb():
 
 func pow_timeout():
 	gun_count = max(1, gun_count - 1)
-	get_node("pow_sounds").play("gun_up")
+	get_node("pow_sounds").play("gun_down")
 	#print("gun downgraded")
 
 func launch_bomb():

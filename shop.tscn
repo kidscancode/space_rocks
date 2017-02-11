@@ -1,0 +1,782 @@
+[gd_scene load_steps=14 format=1]
+
+[ext_resource path="res://shop.gd" type="Script" id=1]
+[ext_resource path="res://art/starfield.png" type="Texture" id=2]
+[ext_resource path="res://art/gui/glassPanel_cornerBR.png" type="Texture" id=3]
+[ext_resource path="res://art/sheet.pill_yellow.atex" type="Texture" id=4]
+[ext_resource path="res://fonts/KenVector Future.ttf" type="DynamicFontData" id=5]
+[ext_resource path="res://art/gui/glassPanel_corners.png" type="Texture" id=6]
+[ext_resource path="res://art/gui/glassPanel_cornerTL.png" type="Texture" id=7]
+[ext_resource path="res://art/gui/square_shadow.png" type="Texture" id=8]
+[ext_resource path="res://art/gui/crossair_blueOutline.png" type="Texture" id=9]
+
+[sub_resource type="DynamicFont" id=1]
+
+font/size = 45
+font/use_mipmaps = false
+font/use_filter = false
+font/font = ExtResource( 5 )
+
+[sub_resource type="DynamicFont" id=2]
+
+font/size = 32
+font/use_mipmaps = false
+font/use_filter = false
+font/font = ExtResource( 5 )
+
+[sub_resource type="DynamicFont" id=3]
+
+font/size = 30
+font/use_mipmaps = false
+font/use_filter = false
+font/font = ExtResource( 5 )
+
+[sub_resource type="DynamicFont" id=4]
+
+font/size = 38
+font/use_mipmaps = false
+font/use_filter = false
+font/font = ExtResource( 5 )
+
+[node name="shop" type="Control"]
+
+anchor/right = 1
+anchor/bottom = 1
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 0.0
+margin/bottom = 0.0
+script/script = ExtResource( 1 )
+__meta__ = { "_edit_lock_":true }
+
+[node name="background" type="TextureFrame" parent="."]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 1026.0
+margin/bottom = 769.0
+texture = ExtResource( 2 )
+expand = true
+stretch_mode = 0
+__meta__ = { "_edit_lock_":true }
+
+[node name="cash_frame" type="Patch9Frame" parent="."]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 711.0
+margin/top = 36.0
+margin/right = 1005.0
+margin/bottom = 114.0
+texture = ExtResource( 3 )
+region_rect = Rect2( 0, 0, 100, 100 )
+patch_margin/left = 14
+patch_margin/top = 15
+patch_margin/right = 16
+patch_margin/bottom = 16
+__meta__ = { "_edit_group_":true }
+
+[node name="TextureFrame 3" type="TextureFrame" parent="cash_frame"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 15.0
+margin/top = 15.0
+margin/right = 65.0
+margin/bottom = 65.0
+texture = ExtResource( 4 )
+expand = true
+stretch_mode = 6
+
+[node name="cash" type="Label" parent="cash_frame"]
+
+anchor/right = 1
+anchor/bottom = 1
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 15.0
+margin/top = 15.0
+margin/right = 15.0
+margin/bottom = 15.0
+custom_fonts/font = SubResource( 1 )
+text = "0"
+align = 2
+valign = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="title_frame" type="Patch9Frame" parent="."]
+
+editor/display_folded = true
+anchor/right = 1
+anchor/bottom = 1
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 355.0
+margin/top = 34.0
+margin/right = 351.0
+margin/bottom = 656.0
+texture = ExtResource( 6 )
+region_rect = Rect2( 0, 0, 100, 100 )
+patch_margin/left = 14
+patch_margin/top = 15
+patch_margin/right = 16
+patch_margin/bottom = 16
+__meta__ = { "_edit_group_":true }
+
+[node name="title" type="Label" parent="title_frame"]
+
+anchor/right = 1
+anchor/bottom = 1
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 15.0
+margin/top = 15.0
+margin/right = 15.0
+margin/bottom = 15.0
+custom_fonts/font = SubResource( 1 )
+text = "UPGRADES"
+valign = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="gun_button" type="Patch9Frame" parent="."]
+
+anchor/top = 3
+anchor/bottom = 3
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 593.0
+margin/top = 166.0
+margin/right = 779.0
+margin/bottom = 93.0
+texture = ExtResource( 6 )
+region_rect = Rect2( 0, 0, 100, 100 )
+patch_margin/left = 14
+patch_margin/top = 15
+patch_margin/right = 16
+patch_margin/bottom = 16
+__meta__ = { "_edit_group_":true }
+
+[node name="pill" type="TextureFrame" parent="gun_button"]
+
+anchor/bottom = 1
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 15.0
+margin/top = 15.0
+margin/right = 52.0
+margin/bottom = 15.0
+texture = ExtResource( 4 )
+expand = true
+stretch_mode = 6
+
+[node name="button" type="Button" parent="gun_button"]
+
+anchor/right = 1
+anchor/bottom = 1
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 61.0
+margin/top = 15.0
+margin/right = 15.0
+margin/bottom = 15.0
+custom_fonts/font = SubResource( 2 )
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+text = "135"
+flat = false
+
+[node name="guns" type="Patch9Frame" parent="."]
+
+editor/display_folded = true
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 30.0
+margin/top = 204.0
+margin/right = 517.0
+margin/bottom = 294.0
+texture = ExtResource( 7 )
+region_rect = Rect2( 0, 0, 100, 100 )
+patch_margin/left = 14
+patch_margin/top = 15
+patch_margin/right = 16
+patch_margin/bottom = 16
+__meta__ = { "_edit_group_":true }
+
+[node name="Label" type="Label" parent="guns"]
+
+anchor/bottom = 1
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 15.0
+margin/top = 15.0
+margin/right = 190.0
+margin/bottom = 15.0
+custom_fonts/font = SubResource( 3 )
+custom_colors/font_color = Color( 0.745098, 0.745098, 0.745098, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 4
+custom_constants/shadow_offset_y = 4
+text = "Gun Level"
+valign = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="box1" type="TextureFrame" parent="guns"]
+
+anchor/left = 1
+anchor/right = 1
+anchor/bottom = 1
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 240.0
+margin/top = 15.0
+margin/right = 195.0
+margin/bottom = 15.0
+texture = ExtResource( 8 )
+expand = true
+stretch_mode = 5
+
+[node name="box2" type="TextureFrame" parent="guns"]
+
+anchor/left = 1
+anchor/right = 1
+anchor/bottom = 1
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 180.0
+margin/top = 15.0
+margin/right = 135.0
+margin/bottom = 15.0
+texture = ExtResource( 8 )
+expand = true
+stretch_mode = 5
+
+[node name="box3" type="TextureFrame" parent="guns"]
+
+anchor/left = 1
+anchor/right = 1
+anchor/bottom = 1
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 120.0
+margin/top = 15.0
+margin/right = 75.0
+margin/bottom = 15.0
+texture = ExtResource( 8 )
+expand = true
+stretch_mode = 5
+
+[node name="box4" type="TextureFrame" parent="guns"]
+
+anchor/left = 1
+anchor/right = 1
+anchor/bottom = 1
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 60.0
+margin/top = 15.0
+margin/right = 15.0
+margin/bottom = 15.0
+texture = ExtResource( 8 )
+expand = true
+stretch_mode = 5
+
+[node name="fire_rate" type="Patch9Frame" parent="."]
+
+editor/display_folded = true
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 28.0
+margin/top = 326.0
+margin/right = 515.0
+margin/bottom = 416.0
+texture = ExtResource( 7 )
+region_rect = Rect2( 0, 0, 100, 100 )
+patch_margin/left = 14
+patch_margin/top = 15
+patch_margin/right = 16
+patch_margin/bottom = 16
+__meta__ = { "_edit_group_":true }
+
+[node name="Label" type="Label" parent="fire_rate"]
+
+anchor/bottom = 1
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 15.0
+margin/top = 15.0
+margin/right = 190.0
+margin/bottom = 15.0
+custom_fonts/font = SubResource( 3 )
+custom_colors/font_color = Color( 0.745098, 0.745098, 0.745098, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 4
+custom_constants/shadow_offset_y = 4
+text = "Fire Rate"
+valign = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="box1" type="TextureFrame" parent="fire_rate"]
+
+anchor/left = 1
+anchor/right = 1
+anchor/bottom = 1
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 240.0
+margin/top = 15.0
+margin/right = 195.0
+margin/bottom = 15.0
+texture = ExtResource( 8 )
+expand = true
+stretch_mode = 5
+
+[node name="box2" type="TextureFrame" parent="fire_rate"]
+
+anchor/left = 1
+anchor/right = 1
+anchor/bottom = 1
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 180.0
+margin/top = 15.0
+margin/right = 135.0
+margin/bottom = 15.0
+texture = ExtResource( 8 )
+expand = true
+stretch_mode = 5
+
+[node name="box3" type="TextureFrame" parent="fire_rate"]
+
+anchor/left = 1
+anchor/right = 1
+anchor/bottom = 1
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 120.0
+margin/top = 15.0
+margin/right = 75.0
+margin/bottom = 15.0
+texture = ExtResource( 8 )
+expand = true
+stretch_mode = 5
+
+[node name="box4" type="TextureFrame" parent="fire_rate"]
+
+anchor/left = 1
+anchor/right = 1
+anchor/bottom = 1
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 60.0
+margin/top = 15.0
+margin/right = 15.0
+margin/bottom = 15.0
+texture = ExtResource( 8 )
+expand = true
+stretch_mode = 5
+
+[node name="thrust" type="Patch9Frame" parent="."]
+
+editor/display_folded = true
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 32.0
+margin/top = 439.0
+margin/right = 519.0
+margin/bottom = 529.0
+texture = ExtResource( 7 )
+region_rect = Rect2( 0, 0, 100, 100 )
+patch_margin/left = 14
+patch_margin/top = 15
+patch_margin/right = 16
+patch_margin/bottom = 16
+__meta__ = { "_edit_group_":true }
+
+[node name="Label" type="Label" parent="thrust"]
+
+anchor/bottom = 1
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 15.0
+margin/top = 15.0
+margin/right = 190.0
+margin/bottom = 15.0
+custom_fonts/font = SubResource( 3 )
+custom_colors/font_color = Color( 0.745098, 0.745098, 0.745098, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 4
+custom_constants/shadow_offset_y = 4
+text = "Power"
+valign = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="box1" type="TextureFrame" parent="thrust"]
+
+anchor/left = 1
+anchor/right = 1
+anchor/bottom = 1
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 240.0
+margin/top = 15.0
+margin/right = 195.0
+margin/bottom = 15.0
+texture = ExtResource( 8 )
+expand = true
+stretch_mode = 5
+
+[node name="box2" type="TextureFrame" parent="thrust"]
+
+anchor/left = 1
+anchor/right = 1
+anchor/bottom = 1
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 180.0
+margin/top = 15.0
+margin/right = 135.0
+margin/bottom = 15.0
+texture = ExtResource( 8 )
+expand = true
+stretch_mode = 5
+
+[node name="box3" type="TextureFrame" parent="thrust"]
+
+anchor/left = 1
+anchor/right = 1
+anchor/bottom = 1
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 120.0
+margin/top = 15.0
+margin/right = 75.0
+margin/bottom = 15.0
+texture = ExtResource( 8 )
+expand = true
+stretch_mode = 5
+
+[node name="box4" type="TextureFrame" parent="thrust"]
+
+anchor/left = 1
+anchor/right = 1
+anchor/bottom = 1
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 60.0
+margin/top = 15.0
+margin/right = 15.0
+margin/bottom = 15.0
+texture = ExtResource( 8 )
+expand = true
+stretch_mode = 5
+
+[node name="rot" type="Patch9Frame" parent="."]
+
+editor/display_folded = true
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 29.0
+margin/top = 553.0
+margin/right = 516.0
+margin/bottom = 643.0
+texture = ExtResource( 7 )
+region_rect = Rect2( 0, 0, 100, 100 )
+patch_margin/left = 14
+patch_margin/top = 15
+patch_margin/right = 16
+patch_margin/bottom = 16
+__meta__ = { "_edit_group_":true }
+
+[node name="Label" type="Label" parent="rot"]
+
+anchor/bottom = 1
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 15.0
+margin/top = 15.0
+margin/right = 190.0
+margin/bottom = 15.0
+custom_fonts/font = SubResource( 3 )
+custom_colors/font_color = Color( 0.745098, 0.745098, 0.745098, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 4
+custom_constants/shadow_offset_y = 4
+text = "Rotation"
+valign = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="box1" type="TextureFrame" parent="rot"]
+
+anchor/left = 1
+anchor/right = 1
+anchor/bottom = 1
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 240.0
+margin/top = 15.0
+margin/right = 195.0
+margin/bottom = 15.0
+texture = ExtResource( 8 )
+expand = true
+stretch_mode = 5
+
+[node name="box2" type="TextureFrame" parent="rot"]
+
+anchor/left = 1
+anchor/right = 1
+anchor/bottom = 1
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 180.0
+margin/top = 15.0
+margin/right = 135.0
+margin/bottom = 15.0
+texture = ExtResource( 8 )
+expand = true
+stretch_mode = 5
+
+[node name="box3" type="TextureFrame" parent="rot"]
+
+anchor/left = 1
+anchor/right = 1
+anchor/bottom = 1
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 120.0
+margin/top = 15.0
+margin/right = 75.0
+margin/bottom = 15.0
+texture = ExtResource( 8 )
+expand = true
+stretch_mode = 5
+
+[node name="box4" type="TextureFrame" parent="rot"]
+
+anchor/left = 1
+anchor/right = 1
+anchor/bottom = 1
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 60.0
+margin/top = 15.0
+margin/right = 15.0
+margin/bottom = 15.0
+texture = ExtResource( 8 )
+expand = true
+stretch_mode = 5
+
+[node name="shield_recharge" type="Patch9Frame" parent="."]
+
+editor/display_folded = true
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 29.0
+margin/top = 660.0
+margin/right = 516.0
+margin/bottom = 750.0
+texture = ExtResource( 7 )
+region_rect = Rect2( 0, 0, 100, 100 )
+patch_margin/left = 14
+patch_margin/top = 15
+patch_margin/right = 16
+patch_margin/bottom = 16
+__meta__ = { "_edit_group_":true }
+
+[node name="Label" type="Label" parent="shield_recharge"]
+
+anchor/bottom = 1
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 15.0
+margin/top = 15.0
+margin/right = 190.0
+margin/bottom = 15.0
+custom_fonts/font = SubResource( 3 )
+custom_colors/font_color = Color( 0.745098, 0.745098, 0.745098, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 4
+custom_constants/shadow_offset_y = 4
+text = "Shield"
+valign = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="box1" type="TextureFrame" parent="shield_recharge"]
+
+anchor/left = 1
+anchor/right = 1
+anchor/bottom = 1
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 240.0
+margin/top = 15.0
+margin/right = 195.0
+margin/bottom = 15.0
+texture = ExtResource( 8 )
+expand = true
+stretch_mode = 5
+
+[node name="box2" type="TextureFrame" parent="shield_recharge"]
+
+anchor/left = 1
+anchor/right = 1
+anchor/bottom = 1
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 180.0
+margin/top = 15.0
+margin/right = 135.0
+margin/bottom = 15.0
+texture = ExtResource( 8 )
+expand = true
+stretch_mode = 5
+
+[node name="box3" type="TextureFrame" parent="shield_recharge"]
+
+anchor/left = 1
+anchor/right = 1
+anchor/bottom = 1
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 120.0
+margin/top = 15.0
+margin/right = 75.0
+margin/bottom = 15.0
+texture = ExtResource( 8 )
+expand = true
+stretch_mode = 5
+
+[node name="box4" type="TextureFrame" parent="shield_recharge"]
+
+anchor/left = 1
+anchor/right = 1
+anchor/bottom = 1
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 60.0
+margin/top = 15.0
+margin/right = 15.0
+margin/bottom = 15.0
+texture = ExtResource( 8 )
+expand = true
+stretch_mode = 5
+
+[node name="ok_button" type="Button" parent="."]
+
+anchor/top = 1
+anchor/bottom = 1
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 737.0
+margin/top = 100.0
+margin/right = 1012.0
+margin/bottom = 15.0
+custom_fonts/font = SubResource( 4 )
+toggle_mode = true
+enabled_focus_mode = 2
+shortcut = null
+text = "Ready"
+icon = ExtResource( 9 )
+flat = false
+
+

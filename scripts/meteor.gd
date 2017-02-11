@@ -16,7 +16,6 @@ var damage = {'big': 40, 'med': 20, 'sm': 15, 'tiny': 10}
 export var SPEED_MIN = 30
 export var SPEED_MAX = 150
 export var ROT_MAX = 110
-export var POW_CHANCE = 5  # from 100
 
 var vel
 var pos
@@ -77,7 +76,7 @@ func explode():
 	main_scene.play_explosion(pos, "regular")
 
 func spawn_powerup():
-	if randi() % 100 < POW_CHANCE:
+	if randi() % 100 < global.POW_CHANCE:
 		var pow_instance = powerup.instance()
 		main_scene.add_child(pow_instance)
 		pow_instance.pos = pos

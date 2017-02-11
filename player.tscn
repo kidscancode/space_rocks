@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=1]
+[gd_scene load_steps=21 format=1]
 
 [ext_resource path="res://scripts/player.gd" type="Script" id=1]
 [ext_resource path="res://art/sheet.playerShip2_orange.atex" type="Texture" id=2]
@@ -11,10 +11,11 @@
 [ext_resource path="res://audio/sfx_wpn_laser7.wav" type="Sample" id=9]
 [ext_resource path="res://audio/sfx_wpn_laser8.wav" type="Sample" id=10]
 [ext_resource path="res://art/sheet.shield3.atex" type="Texture" id=11]
-[ext_resource path="res://audio/bounce.wav" type="Sample" id=12]
-[ext_resource path="res://audio/sfx_sounds_powerup16.wav" type="Sample" id=13]
-[ext_resource path="res://audio/sfx_sound_shutdown1.wav" type="Sample" id=14]
-[ext_resource path="res://audio/sfx_sounds_powerup18.wav" type="Sample" id=15]
+[ext_resource path="res://audio/Downer.wav" type="Sample" id=12]
+[ext_resource path="res://audio/bounce.wav" type="Sample" id=13]
+[ext_resource path="res://audio/sfx_sounds_powerup16.wav" type="Sample" id=14]
+[ext_resource path="res://audio/sfx_sound_shutdown1.wav" type="Sample" id=15]
+[ext_resource path="res://audio/sfx_sounds_powerup18.wav" type="Sample" id=16]
 
 [sub_resource type="CircleShape2D" id=1]
 
@@ -35,9 +36,10 @@ samples/sfx_wpn_laser8 = { "db":0.0, "pitch":1.0, "sample":ExtResource( 10 ) }
 [sub_resource type="SampleLibrary" id=4]
 
 samples/gun_down = { "db":0.0, "pitch":1.0, "sample":ExtResource( 12 ) }
-samples/gun_up = { "db":0.0, "pitch":1.0, "sample":ExtResource( 13 ) }
-samples/shield_down = { "db":0.0, "pitch":1.0, "sample":ExtResource( 14 ) }
-samples/shield_up = { "db":0.0, "pitch":1.0, "sample":ExtResource( 15 ) }
+samples/gun_down1 = { "db":0.0, "pitch":1.0, "sample":ExtResource( 13 ) }
+samples/gun_up = { "db":0.0, "pitch":1.0, "sample":ExtResource( 14 ) }
+samples/shield_down = { "db":0.0, "pitch":1.0, "sample":ExtResource( 15 ) }
+samples/shield_up = { "db":0.0, "pitch":1.0, "sample":ExtResource( 16 ) }
 
 [node name="player" type="Area2D"]
 
@@ -53,13 +55,6 @@ linear_damp = 0.1
 angular_damp = 1.0
 script/script = ExtResource( 1 )
 __meta__ = { "_edit_group_":true }
-ROT_SPEED = 180
-THRUST = 700
-MAX_VEL = 400
-FRICTION = 0.65
-SHIELD_REGEN = 5
-shield_level = 100
-shield_on = true
 
 [node name="ship" type="Sprite" parent="."]
 
@@ -117,6 +112,7 @@ transform/rot = 5.0
 transform/pos = Vector2( 0, 35 )
 frames = SubResource( 2 )
 animation = "blue"
+frame = 1
 playing = true
 
 [node name="shoot_sound" type="SamplePlayer" parent="."]
