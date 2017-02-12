@@ -7,7 +7,7 @@ onready var bullet_container = get_node("../bullet_container")
 var thrust_level = {1: 500, 2: 600, 3: 700, 4: 800}
 var rot_level = {1: 100, 2: 150, 3: 180, 4: 210}
 var shield_regen = {1: 5, 2: 7.5, 3: 10, 4: 15}
-var fire_rate = {}
+var fire_rate = {1: 5, 2: 7.5, 3: 10, 4: 15}
 
 var ROT_SPEED = 180  # degrees per sec
 var THRUST = 500
@@ -31,7 +31,8 @@ var gun_count = 1
 var gun_locations = {
 	1: ["muzzle(nose)"],
 	2: ["muzzle(lwing)", "muzzle(rwing)"],
-	3: ["muzzle(nose)", "muzzle(lwing)", "muzzle(rwing)"]
+	3: ["muzzle(nose)", "muzzle(lwing)", "muzzle(rwing)"],
+	4: ["muzzle(nose)", "muzzle(lwing)", "muzzle(rwing)"]
 }
 
 
@@ -47,7 +48,8 @@ func _ready():
 	set_process(true)
 
 func _process(delta):
-	shield_level = min(shield_level + SHIELD_REGEN * delta, 100)
+	gun_count = global.upgrade_level['guns']
+	shield_level = min(shield_level + shield_regen[global.upgrade_level['shield_regen']] * delta, 100)
 	if Input.is_action_pressed("shoot_main") and can_shoot:
 		shoot(gun_count)
 		can_shoot = false
@@ -57,11 +59,11 @@ func _process(delta):
 		bomb_active = false
 		bomb_timer.start()
 	if Input.is_action_pressed("rotate_left"):
-		rot += ROT_SPEED * delta
+		rot += rot_level[global.upgrade_level['rot']] * delta
 	if Input.is_action_pressed("rotate_right"):
-		rot -= ROT_SPEED * delta
+		rot -= rot_level[global.upgrade_level['rot']] * delta
 	if Input.is_action_pressed("thrust"):
-		acc = Vector2(THRUST, 0).rotated(deg2rad(rot))
+		acc = Vector2(thrust_level[global.upgrade_level['thrust']], 0).rotated(deg2rad(rot))
 		get_node("exhaust").show()
 	else:
 		acc = Vector2(0, 0)
@@ -128,7 +130,8 @@ func _on_player_area_enter( area ):
 			shield_level -= dmg
 			meteor.explode()
 		else:
-			get_tree().reload_current_scene()
+			global.game_over = true
+			global.goto_scene("res://main.tscn")
 	if area.get_groups().has("powerups"):
 		if area.type == 'shield':
 			shield_on = true
@@ -141,4 +144,7 @@ func _on_player_area_enter( area ):
 			pow_timer.set_wait_time(10)
 			pow_timer.start()
 			get_node("pow_sounds").play("gun_up")
+		if area.type == 'pill':
+			global.cash += 5
+			get_node("pow_sounds").play("cash_up")
 		area.pickup()

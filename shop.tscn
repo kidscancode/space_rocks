@@ -1,14 +1,17 @@
-[gd_scene load_steps=14 format=1]
+[gd_scene load_steps=25 format=1]
 
 [ext_resource path="res://shop.gd" type="Script" id=1]
 [ext_resource path="res://art/starfield.png" type="Texture" id=2]
 [ext_resource path="res://art/gui/glassPanel_cornerBR.png" type="Texture" id=3]
 [ext_resource path="res://art/sheet.pill_yellow.atex" type="Texture" id=4]
 [ext_resource path="res://fonts/KenVector Future.ttf" type="DynamicFontData" id=5]
-[ext_resource path="res://art/gui/glassPanel_corners.png" type="Texture" id=6]
-[ext_resource path="res://art/gui/glassPanel_cornerTL.png" type="Texture" id=7]
-[ext_resource path="res://art/gui/square_shadow.png" type="Texture" id=8]
-[ext_resource path="res://art/gui/crossair_blueOutline.png" type="Texture" id=9]
+[ext_resource path="res://art/gui/glassPanel_tab.png" type="Texture" id=6]
+[ext_resource path="res://art/gui/glassPanel_corners.png" type="Texture" id=7]
+[ext_resource path="res://art/gui/glassPanel_cornerTL.png" type="Texture" id=8]
+[ext_resource path="res://art/gui/square_shadow.png" type="Texture" id=9]
+[ext_resource path="res://art/gui/crossair_blueOutline.png" type="Texture" id=10]
+[ext_resource path="res://audio/sfx_sounds_Blip10.wav" type="Sample" id=11]
+[ext_resource path="res://audio/sfx_sounds_fanfare1.wav" type="Sample" id=12]
 
 [sub_resource type="DynamicFont" id=1]
 
@@ -17,26 +20,80 @@ font/use_mipmaps = false
 font/use_filter = false
 font/font = ExtResource( 5 )
 
-[sub_resource type="DynamicFont" id=2]
+[sub_resource type="StyleBoxEmpty" id=2]
+
+content_margin/left = -1.0
+content_margin/right = -1.0
+content_margin/top = -1.0
+content_margin/bottom = -1.0
+
+[sub_resource type="StyleBoxEmpty" id=3]
+
+content_margin/left = -1.0
+content_margin/right = -1.0
+content_margin/top = -1.0
+content_margin/bottom = -1.0
+
+[sub_resource type="StyleBoxEmpty" id=4]
+
+content_margin/left = -1.0
+content_margin/right = -1.0
+content_margin/top = -1.0
+content_margin/bottom = -1.0
+
+[sub_resource type="DynamicFont" id=5]
 
 font/size = 32
 font/use_mipmaps = false
 font/use_filter = false
 font/font = ExtResource( 5 )
 
-[sub_resource type="DynamicFont" id=3]
+[sub_resource type="StyleBoxEmpty" id=6]
+
+content_margin/left = -1.0
+content_margin/right = -1.0
+content_margin/top = -1.0
+content_margin/bottom = -1.0
+
+[sub_resource type="StyleBoxEmpty" id=7]
+
+content_margin/left = -1.0
+content_margin/right = -1.0
+content_margin/top = -1.0
+content_margin/bottom = -1.0
+
+[sub_resource type="StyleBoxEmpty" id=8]
+
+content_margin/left = -1.0
+content_margin/right = -1.0
+content_margin/top = -1.0
+content_margin/bottom = -1.0
+
+[sub_resource type="StyleBoxEmpty" id=9]
+
+content_margin/left = -1.0
+content_margin/right = -1.0
+content_margin/top = -1.0
+content_margin/bottom = -1.0
+
+[sub_resource type="DynamicFont" id=10]
 
 font/size = 30
 font/use_mipmaps = false
 font/use_filter = false
 font/font = ExtResource( 5 )
 
-[sub_resource type="DynamicFont" id=4]
+[sub_resource type="DynamicFont" id=11]
 
-font/size = 38
+font/size = 42
 font/use_mipmaps = false
 font/use_filter = false
 font/font = ExtResource( 5 )
+
+[sub_resource type="SampleLibrary" id=12]
+
+samples/sfx_sounds_Blip10 = { "db":0.0, "pitch":1.0, "sample":ExtResource( 11 ) }
+samples/up = { "db":0.0, "pitch":1.0, "sample":ExtResource( 12 ) }
 
 [node name="shop" type="Control"]
 
@@ -70,14 +127,15 @@ __meta__ = { "_edit_lock_":true }
 
 [node name="cash_frame" type="Patch9Frame" parent="."]
 
+editor/display_folded = true
 focus/ignore_mouse = true
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
-margin/left = 711.0
-margin/top = 36.0
-margin/right = 1005.0
-margin/bottom = 114.0
+margin/left = 716.0
+margin/top = 15.0
+margin/right = 1010.0
+margin/bottom = 93.0
 texture = ExtResource( 3 )
 region_rect = Rect2( 0, 0, 100, 100 )
 patch_margin/left = 14
@@ -129,16 +187,16 @@ focus/ignore_mouse = true
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
-margin/left = 355.0
-margin/top = 34.0
-margin/right = 351.0
-margin/bottom = 656.0
+margin/left = 13.0
+margin/top = 11.0
+margin/right = 693.0
+margin/bottom = 679.0
 texture = ExtResource( 6 )
-region_rect = Rect2( 0, 0, 100, 100 )
+region_rect = Rect2( 0, 0, 100, 113 )
 patch_margin/left = 14
-patch_margin/top = 15
-patch_margin/right = 16
-patch_margin/bottom = 16
+patch_margin/top = 17
+patch_margin/right = 36
+patch_margin/bottom = 11
 __meta__ = { "_edit_group_":true }
 
 [node name="title" type="Label" parent="title_frame"]
@@ -160,19 +218,19 @@ percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="gun_button" type="Patch9Frame" parent="."]
+[node name="guns_button" type="Patch9Frame" parent="."]
 
-anchor/top = 3
-anchor/bottom = 3
+editor/display_folded = true
+rect/min_size = Vector2( 130, 70 )
 focus/ignore_mouse = true
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
-margin/left = 593.0
-margin/top = 166.0
-margin/right = 779.0
-margin/bottom = 93.0
-texture = ExtResource( 6 )
+margin/left = 540.0
+margin/top = 169.0
+margin/right = 671.0
+margin/bottom = 239.0
+texture = ExtResource( 7 )
 region_rect = Rect2( 0, 0, 100, 100 )
 patch_margin/left = 14
 patch_margin/top = 15
@@ -180,52 +238,299 @@ patch_margin/right = 16
 patch_margin/bottom = 16
 __meta__ = { "_edit_group_":true }
 
-[node name="pill" type="TextureFrame" parent="gun_button"]
+[node name="pill" type="TextureFrame" parent="guns_button"]
 
+anchor/left = 1
+anchor/right = 1
 anchor/bottom = 1
 focus/ignore_mouse = true
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
-margin/left = 15.0
+margin/left = 45.0
 margin/top = 15.0
-margin/right = 52.0
+margin/right = 15.0
 margin/bottom = 15.0
 texture = ExtResource( 4 )
 expand = true
 stretch_mode = 6
 
-[node name="button" type="Button" parent="gun_button"]
+[node name="button" type="Button" parent="guns_button"]
 
-anchor/right = 1
 anchor/bottom = 1
 focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
-margin/left = 61.0
+margin/left = 15.0
 margin/top = 15.0
-margin/right = 15.0
+margin/right = 95.0
 margin/bottom = 15.0
-custom_fonts/font = SubResource( 2 )
+custom_styles/hover = SubResource( 2 )
+custom_styles/pressed = SubResource( 3 )
+custom_styles/disabled = SubResource( 4 )
+custom_fonts/font = SubResource( 5 )
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
-text = "135"
-flat = false
+text = "35"
+flat = true
 
-[node name="guns" type="Patch9Frame" parent="."]
+[node name="fire_rate_button" type="Patch9Frame" parent="."]
 
 editor/display_folded = true
+rect/min_size = Vector2( 130, 70 )
 focus/ignore_mouse = true
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
-margin/left = 30.0
-margin/top = 204.0
-margin/right = 517.0
-margin/bottom = 294.0
+margin/left = 540.0
+margin/top = 289.0
+margin/right = 670.0
+margin/bottom = 359.0
 texture = ExtResource( 7 )
+region_rect = Rect2( 0, 0, 100, 100 )
+patch_margin/left = 14
+patch_margin/top = 15
+patch_margin/right = 16
+patch_margin/bottom = 16
+__meta__ = { "_edit_group_":true }
+
+[node name="pill" type="TextureFrame" parent="fire_rate_button"]
+
+anchor/left = 1
+anchor/right = 1
+anchor/bottom = 1
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 45.0
+margin/top = 15.0
+margin/right = 15.0
+margin/bottom = 15.0
+texture = ExtResource( 4 )
+expand = true
+stretch_mode = 6
+
+[node name="button" type="Button" parent="fire_rate_button"]
+
+anchor/bottom = 1
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 15.0
+margin/top = 15.0
+margin/right = 95.0
+margin/bottom = 15.0
+custom_styles/hover = SubResource( 2 )
+custom_styles/pressed = SubResource( 3 )
+custom_styles/disabled = SubResource( 6 )
+custom_fonts/font = SubResource( 5 )
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+text = "35"
+flat = true
+
+[node name="thrust_button" type="Patch9Frame" parent="."]
+
+editor/display_folded = true
+rect/min_size = Vector2( 130, 70 )
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 540.0
+margin/top = 409.0
+margin/right = 670.0
+margin/bottom = 479.0
+texture = ExtResource( 7 )
+region_rect = Rect2( 0, 0, 100, 100 )
+patch_margin/left = 14
+patch_margin/top = 15
+patch_margin/right = 16
+patch_margin/bottom = 16
+__meta__ = { "_edit_group_":true }
+
+[node name="pill" type="TextureFrame" parent="thrust_button"]
+
+anchor/left = 1
+anchor/right = 1
+anchor/bottom = 1
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 45.0
+margin/top = 15.0
+margin/right = 15.0
+margin/bottom = 15.0
+texture = ExtResource( 4 )
+expand = true
+stretch_mode = 6
+
+[node name="button" type="Button" parent="thrust_button"]
+
+anchor/bottom = 1
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 15.0
+margin/top = 15.0
+margin/right = 95.0
+margin/bottom = 15.0
+custom_styles/hover = SubResource( 2 )
+custom_styles/pressed = SubResource( 3 )
+custom_styles/disabled = SubResource( 7 )
+custom_fonts/font = SubResource( 5 )
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+text = "35"
+flat = true
+
+[node name="rot_button" type="Patch9Frame" parent="."]
+
+editor/display_folded = true
+anchor/left = 3
+anchor/top = 3
+anchor/right = 3
+anchor/bottom = 3
+rect/min_size = Vector2( 130, 70 )
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = -28.0
+margin/top = -145.0
+margin/right = -158.0
+margin/bottom = -215.0
+texture = ExtResource( 7 )
+region_rect = Rect2( 0, 0, 100, 100 )
+patch_margin/left = 14
+patch_margin/top = 15
+patch_margin/right = 16
+patch_margin/bottom = 16
+__meta__ = { "_edit_group_":true }
+
+[node name="pill" type="TextureFrame" parent="rot_button"]
+
+anchor/left = 1
+anchor/right = 1
+anchor/bottom = 1
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 45.0
+margin/top = 15.0
+margin/right = 15.0
+margin/bottom = 15.0
+texture = ExtResource( 4 )
+expand = true
+stretch_mode = 6
+
+[node name="button" type="Button" parent="rot_button"]
+
+anchor/bottom = 1
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 15.0
+margin/top = 15.0
+margin/right = 95.0
+margin/bottom = 15.0
+custom_styles/hover = SubResource( 2 )
+custom_styles/pressed = SubResource( 3 )
+custom_styles/disabled = SubResource( 8 )
+custom_fonts/font = SubResource( 5 )
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+text = "n/a"
+flat = true
+
+[node name="shield_regen_button" type="Patch9Frame" parent="."]
+
+editor/display_folded = true
+anchor/left = 3
+anchor/top = 3
+anchor/right = 3
+anchor/bottom = 3
+rect/min_size = Vector2( 130, 70 )
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = -28.0
+margin/top = -265.0
+margin/right = -158.0
+margin/bottom = -335.0
+texture = ExtResource( 7 )
+region_rect = Rect2( 0, 0, 100, 100 )
+patch_margin/left = 14
+patch_margin/top = 15
+patch_margin/right = 16
+patch_margin/bottom = 16
+__meta__ = { "_edit_group_":true }
+
+[node name="pill" type="TextureFrame" parent="shield_regen_button"]
+
+anchor/left = 1
+anchor/right = 1
+anchor/bottom = 1
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 45.0
+margin/top = 15.0
+margin/right = 15.0
+margin/bottom = 15.0
+texture = ExtResource( 4 )
+expand = true
+stretch_mode = 6
+
+[node name="button" type="Button" parent="shield_regen_button"]
+
+anchor/bottom = 1
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 15.0
+margin/top = 15.0
+margin/right = 95.0
+margin/bottom = 15.0
+custom_styles/hover = SubResource( 2 )
+custom_styles/pressed = SubResource( 3 )
+custom_styles/disabled = SubResource( 9 )
+custom_fonts/font = SubResource( 5 )
+toggle_mode = true
+click_on_press = true
+enabled_focus_mode = 2
+shortcut = null
+text = "35"
+flat = true
+
+[node name="guns" type="Patch9Frame" parent="."]
+
+editor/display_folded = true
+anchor/top = 1
+anchor/bottom = 1
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 40.0
+margin/top = 608.0
+margin/right = 526.0
+margin/bottom = 518.0
+texture = ExtResource( 8 )
 region_rect = Rect2( 0, 0, 100, 100 )
 patch_margin/left = 14
 patch_margin/top = 15
@@ -244,7 +549,7 @@ margin/left = 15.0
 margin/top = 15.0
 margin/right = 190.0
 margin/bottom = 15.0
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = SubResource( 10 )
 custom_colors/font_color = Color( 0.745098, 0.745098, 0.745098, 1 )
 custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
 custom_constants/shadow_offset_x = 4
@@ -268,7 +573,7 @@ margin/left = 240.0
 margin/top = 15.0
 margin/right = 195.0
 margin/bottom = 15.0
-texture = ExtResource( 8 )
+texture = ExtResource( 9 )
 expand = true
 stretch_mode = 5
 
@@ -285,7 +590,7 @@ margin/left = 180.0
 margin/top = 15.0
 margin/right = 135.0
 margin/bottom = 15.0
-texture = ExtResource( 8 )
+texture = ExtResource( 9 )
 expand = true
 stretch_mode = 5
 
@@ -302,7 +607,7 @@ margin/left = 120.0
 margin/top = 15.0
 margin/right = 75.0
 margin/bottom = 15.0
-texture = ExtResource( 8 )
+texture = ExtResource( 9 )
 expand = true
 stretch_mode = 5
 
@@ -319,22 +624,24 @@ margin/left = 60.0
 margin/top = 15.0
 margin/right = 15.0
 margin/bottom = 15.0
-texture = ExtResource( 8 )
+texture = ExtResource( 9 )
 expand = true
 stretch_mode = 5
 
 [node name="fire_rate" type="Patch9Frame" parent="."]
 
 editor/display_folded = true
+anchor/top = 1
+anchor/bottom = 1
 focus/ignore_mouse = true
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
-margin/left = 28.0
-margin/top = 326.0
-margin/right = 515.0
-margin/bottom = 416.0
-texture = ExtResource( 7 )
+margin/left = 40.0
+margin/top = 488.0
+margin/right = 526.0
+margin/bottom = 398.0
+texture = ExtResource( 8 )
 region_rect = Rect2( 0, 0, 100, 100 )
 patch_margin/left = 14
 patch_margin/top = 15
@@ -353,7 +660,7 @@ margin/left = 15.0
 margin/top = 15.0
 margin/right = 190.0
 margin/bottom = 15.0
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = SubResource( 10 )
 custom_colors/font_color = Color( 0.745098, 0.745098, 0.745098, 1 )
 custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
 custom_constants/shadow_offset_x = 4
@@ -377,7 +684,7 @@ margin/left = 240.0
 margin/top = 15.0
 margin/right = 195.0
 margin/bottom = 15.0
-texture = ExtResource( 8 )
+texture = ExtResource( 9 )
 expand = true
 stretch_mode = 5
 
@@ -394,7 +701,7 @@ margin/left = 180.0
 margin/top = 15.0
 margin/right = 135.0
 margin/bottom = 15.0
-texture = ExtResource( 8 )
+texture = ExtResource( 9 )
 expand = true
 stretch_mode = 5
 
@@ -411,7 +718,7 @@ margin/left = 120.0
 margin/top = 15.0
 margin/right = 75.0
 margin/bottom = 15.0
-texture = ExtResource( 8 )
+texture = ExtResource( 9 )
 expand = true
 stretch_mode = 5
 
@@ -428,22 +735,24 @@ margin/left = 60.0
 margin/top = 15.0
 margin/right = 15.0
 margin/bottom = 15.0
-texture = ExtResource( 8 )
+texture = ExtResource( 9 )
 expand = true
 stretch_mode = 5
 
 [node name="thrust" type="Patch9Frame" parent="."]
 
 editor/display_folded = true
+anchor/top = 1
+anchor/bottom = 1
 focus/ignore_mouse = true
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
-margin/left = 32.0
-margin/top = 439.0
-margin/right = 519.0
-margin/bottom = 529.0
-texture = ExtResource( 7 )
+margin/left = 40.0
+margin/top = 368.0
+margin/right = 526.0
+margin/bottom = 278.0
+texture = ExtResource( 8 )
 region_rect = Rect2( 0, 0, 100, 100 )
 patch_margin/left = 14
 patch_margin/top = 15
@@ -462,7 +771,7 @@ margin/left = 15.0
 margin/top = 15.0
 margin/right = 190.0
 margin/bottom = 15.0
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = SubResource( 10 )
 custom_colors/font_color = Color( 0.745098, 0.745098, 0.745098, 1 )
 custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
 custom_constants/shadow_offset_x = 4
@@ -486,7 +795,7 @@ margin/left = 240.0
 margin/top = 15.0
 margin/right = 195.0
 margin/bottom = 15.0
-texture = ExtResource( 8 )
+texture = ExtResource( 9 )
 expand = true
 stretch_mode = 5
 
@@ -503,7 +812,7 @@ margin/left = 180.0
 margin/top = 15.0
 margin/right = 135.0
 margin/bottom = 15.0
-texture = ExtResource( 8 )
+texture = ExtResource( 9 )
 expand = true
 stretch_mode = 5
 
@@ -520,7 +829,7 @@ margin/left = 120.0
 margin/top = 15.0
 margin/right = 75.0
 margin/bottom = 15.0
-texture = ExtResource( 8 )
+texture = ExtResource( 9 )
 expand = true
 stretch_mode = 5
 
@@ -537,22 +846,24 @@ margin/left = 60.0
 margin/top = 15.0
 margin/right = 15.0
 margin/bottom = 15.0
-texture = ExtResource( 8 )
+texture = ExtResource( 9 )
 expand = true
 stretch_mode = 5
 
 [node name="rot" type="Patch9Frame" parent="."]
 
 editor/display_folded = true
+anchor/top = 1
+anchor/bottom = 1
 focus/ignore_mouse = true
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
-margin/left = 29.0
-margin/top = 553.0
-margin/right = 516.0
-margin/bottom = 643.0
-texture = ExtResource( 7 )
+margin/left = 40.0
+margin/top = 248.0
+margin/right = 526.0
+margin/bottom = 158.0
+texture = ExtResource( 8 )
 region_rect = Rect2( 0, 0, 100, 100 )
 patch_margin/left = 14
 patch_margin/top = 15
@@ -571,7 +882,7 @@ margin/left = 15.0
 margin/top = 15.0
 margin/right = 190.0
 margin/bottom = 15.0
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = SubResource( 10 )
 custom_colors/font_color = Color( 0.745098, 0.745098, 0.745098, 1 )
 custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
 custom_constants/shadow_offset_x = 4
@@ -595,7 +906,7 @@ margin/left = 240.0
 margin/top = 15.0
 margin/right = 195.0
 margin/bottom = 15.0
-texture = ExtResource( 8 )
+texture = ExtResource( 9 )
 expand = true
 stretch_mode = 5
 
@@ -612,7 +923,7 @@ margin/left = 180.0
 margin/top = 15.0
 margin/right = 135.0
 margin/bottom = 15.0
-texture = ExtResource( 8 )
+texture = ExtResource( 9 )
 expand = true
 stretch_mode = 5
 
@@ -629,7 +940,7 @@ margin/left = 120.0
 margin/top = 15.0
 margin/right = 75.0
 margin/bottom = 15.0
-texture = ExtResource( 8 )
+texture = ExtResource( 9 )
 expand = true
 stretch_mode = 5
 
@@ -646,22 +957,24 @@ margin/left = 60.0
 margin/top = 15.0
 margin/right = 15.0
 margin/bottom = 15.0
-texture = ExtResource( 8 )
+texture = ExtResource( 9 )
 expand = true
 stretch_mode = 5
 
-[node name="shield_recharge" type="Patch9Frame" parent="."]
+[node name="shield_regen" type="Patch9Frame" parent="."]
 
 editor/display_folded = true
+anchor/top = 1
+anchor/bottom = 1
 focus/ignore_mouse = true
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
-margin/left = 29.0
-margin/top = 660.0
-margin/right = 516.0
-margin/bottom = 750.0
-texture = ExtResource( 7 )
+margin/left = 40.0
+margin/top = 128.0
+margin/right = 526.0
+margin/bottom = 38.0
+texture = ExtResource( 8 )
 region_rect = Rect2( 0, 0, 100, 100 )
 patch_margin/left = 14
 patch_margin/top = 15
@@ -669,7 +982,7 @@ patch_margin/right = 16
 patch_margin/bottom = 16
 __meta__ = { "_edit_group_":true }
 
-[node name="Label" type="Label" parent="shield_recharge"]
+[node name="Label" type="Label" parent="shield_regen"]
 
 anchor/bottom = 1
 focus/ignore_mouse = true
@@ -680,7 +993,7 @@ margin/left = 15.0
 margin/top = 15.0
 margin/right = 190.0
 margin/bottom = 15.0
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = SubResource( 10 )
 custom_colors/font_color = Color( 0.745098, 0.745098, 0.745098, 1 )
 custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
 custom_constants/shadow_offset_x = 4
@@ -691,7 +1004,7 @@ percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="box1" type="TextureFrame" parent="shield_recharge"]
+[node name="box1" type="TextureFrame" parent="shield_regen"]
 
 anchor/left = 1
 anchor/right = 1
@@ -704,11 +1017,11 @@ margin/left = 240.0
 margin/top = 15.0
 margin/right = 195.0
 margin/bottom = 15.0
-texture = ExtResource( 8 )
+texture = ExtResource( 9 )
 expand = true
 stretch_mode = 5
 
-[node name="box2" type="TextureFrame" parent="shield_recharge"]
+[node name="box2" type="TextureFrame" parent="shield_regen"]
 
 anchor/left = 1
 anchor/right = 1
@@ -721,11 +1034,11 @@ margin/left = 180.0
 margin/top = 15.0
 margin/right = 135.0
 margin/bottom = 15.0
-texture = ExtResource( 8 )
+texture = ExtResource( 9 )
 expand = true
 stretch_mode = 5
 
-[node name="box3" type="TextureFrame" parent="shield_recharge"]
+[node name="box3" type="TextureFrame" parent="shield_regen"]
 
 anchor/left = 1
 anchor/right = 1
@@ -738,11 +1051,11 @@ margin/left = 120.0
 margin/top = 15.0
 margin/right = 75.0
 margin/bottom = 15.0
-texture = ExtResource( 8 )
+texture = ExtResource( 9 )
 expand = true
 stretch_mode = 5
 
-[node name="box4" type="TextureFrame" parent="shield_recharge"]
+[node name="box4" type="TextureFrame" parent="shield_regen"]
 
 anchor/left = 1
 anchor/right = 1
@@ -755,11 +1068,11 @@ margin/left = 60.0
 margin/top = 15.0
 margin/right = 15.0
 margin/bottom = 15.0
-texture = ExtResource( 8 )
+texture = ExtResource( 9 )
 expand = true
 stretch_mode = 5
 
-[node name="ok_button" type="Button" parent="."]
+[node name="done_button" type="Button" parent="."]
 
 anchor/top = 1
 anchor/bottom = 1
@@ -767,16 +1080,33 @@ focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
-margin/left = 737.0
-margin/top = 100.0
-margin/right = 1012.0
-margin/bottom = 15.0
-custom_fonts/font = SubResource( 4 )
-toggle_mode = true
+margin/left = 760.0
+margin/top = 133.0
+margin/right = 982.0
+margin/bottom = 48.0
+custom_fonts/font = SubResource( 11 )
+toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
-text = "Ready"
-icon = ExtResource( 9 )
+text = "Done"
+icon = ExtResource( 10 )
 flat = false
+
+[node name="sounds" type="SamplePlayer" parent="."]
+
+config/polyphony = 1
+config/samples = SubResource( 12 )
+default/volume_db = 0.0
+default/pitch_scale = 1.0
+default/pan = 0.0
+default/depth = 0.0
+default/height = 0.0
+default/filter/type = 0
+default/filter/cutoff = 5000.0
+default/filter/resonance = 1.0
+default/filter/gain = 1.0
+default/reverb_room = 2
+default/reverb_send = 0.0
+default/chorus_send = 0.0
 
 

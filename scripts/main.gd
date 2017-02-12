@@ -9,8 +9,6 @@ onready var meteor_container = get_node("meteor_container")
 onready var message_box = get_node("HUD/message")
 
 var screen_size
-var level = 1
-var score = 0
 #var paused = false
 var expl_sounds
 
@@ -20,33 +18,34 @@ var shield_bar_yellow = preload("res://art/gui/barHorizontal_yellow_mid 200.png"
 var shield_bar_red = preload("res://art/gui/barHorizontal_red_mid 200.png")
 
 func _ready():
-	#expl_sounds = get_node("explosion_sounds").get_sample_library().get_sample_list()
+	if global.game_over:
+		global.new_game()
 	expl_sounds = ['small1', 'small2', 'small3']
 	screen_size = get_viewport_rect().size
-	#spawn_meteors(3, 'big', screen_size/2, true)
 	set_process(true)
 	get_node("music").play()
 	transition_timer.connect("timeout", self, "transition")
-	transition_timer.start()
-	message_box.set_text("Wave %s" % level)
-	message_box.show()
+	begin_next_level()
+	#transition_timer.start()
+	#message_box.set_text("Wave %s" % global.level)
+	#message_box.show()
 
 func _process(delta):
 	if meteor_container.get_child_count() == 0 and transition_timer.get_time_left() == 0:
-		#global.goto_scene("res://shop.tscn")
-		begin_next_level()
+		global.goto_scene("res://shop.tscn")
+		#begin_next_level()
 		#level += 1
 		#transition_timer.start()
 		#message_box.set_text("Wave %s" % level)
 		#message_box.show()
 		#spawn_meteors(level + 2, 'big', Vector2(0, 0), true)
-	get_node("HUD/score").set_text(str(score))
+	get_node("HUD/score").set_text(str(global.score))
 	show_hud_shield()
 
 func begin_next_level():
-	level += 1
+	global.level += 1
 	transition_timer.start()
-	message_box.set_text("Wave %s" % level)
+	message_box.set_text("Wave %s" % global.level)
 	message_box.show()
 
 func show_hud_shield():
@@ -88,5 +87,5 @@ func play_explosion(pos, type):
 
 func transition():
 	# hide announcement
-	spawn_meteors(level + 2, 'big', Vector2(0, 0), true)
+	spawn_meteors(global.level + 2, 'big', Vector2(0, 0), true)
 	message_box.hide()

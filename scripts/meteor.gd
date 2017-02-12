@@ -1,6 +1,6 @@
 extends Node2D
 
-onready var main_scene = get_node("/root/main")
+onready var main_scene = get_node("../..")
 var powerup = preload("res://powerup.tscn")
 
 var sprites = {
@@ -72,7 +72,7 @@ func explode():
 		main_scene.spawn_meteors(2, newsize, pos, false, vel)
 	spawn_powerup()
 	queue_free()
-	main_scene.score += points[size]
+	global.score += points[size]
 	main_scene.play_explosion(pos, "regular")
 
 func spawn_powerup():
