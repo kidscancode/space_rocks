@@ -1,6 +1,6 @@
-[gd_scene load_steps=25 format=1]
+[gd_scene load_steps=27 format=1]
 
-[ext_resource path="res://shop.gd" type="Script" id=1]
+[ext_resource path="res://scripts/shop.gd" type="Script" id=1]
 [ext_resource path="res://art/starfield.png" type="Texture" id=2]
 [ext_resource path="res://art/gui/glassPanel_cornerBR.png" type="Texture" id=3]
 [ext_resource path="res://art/sheet.pill_yellow.atex" type="Texture" id=4]
@@ -10,22 +10,17 @@
 [ext_resource path="res://art/gui/glassPanel_cornerTL.png" type="Texture" id=8]
 [ext_resource path="res://art/gui/square_shadow.png" type="Texture" id=9]
 [ext_resource path="res://art/gui/crossair_blueOutline.png" type="Texture" id=10]
-[ext_resource path="res://audio/sfx_sounds_Blip10.wav" type="Sample" id=11]
-[ext_resource path="res://audio/sfx_sounds_fanfare1.wav" type="Sample" id=12]
+[ext_resource path="res://audio/sfx_sounds_fanfare2.wav" type="Sample" id=11]
+[ext_resource path="res://audio/sfx_sounds_Blip10.wav" type="Sample" id=12]
+[ext_resource path="res://audio/sfx_sounds_button3.wav" type="Sample" id=13]
+[ext_resource path="res://audio/sfx_sounds_fanfare1.wav" type="Sample" id=14]
 
-[sub_resource type="DynamicFont" id=1]
+[sub_resource type="DynamicFont" id=2]
 
-font/size = 45
+font/size = 32
 font/use_mipmaps = false
 font/use_filter = false
 font/font = ExtResource( 5 )
-
-[sub_resource type="StyleBoxEmpty" id=2]
-
-content_margin/left = -1.0
-content_margin/right = -1.0
-content_margin/top = -1.0
-content_margin/bottom = -1.0
 
 [sub_resource type="StyleBoxEmpty" id=3]
 
@@ -41,19 +36,19 @@ content_margin/right = -1.0
 content_margin/top = -1.0
 content_margin/bottom = -1.0
 
-[sub_resource type="DynamicFont" id=5]
-
-font/size = 32
-font/use_mipmaps = false
-font/use_filter = false
-font/font = ExtResource( 5 )
-
-[sub_resource type="StyleBoxEmpty" id=6]
+[sub_resource type="StyleBoxEmpty" id=5]
 
 content_margin/left = -1.0
 content_margin/right = -1.0
 content_margin/top = -1.0
 content_margin/bottom = -1.0
+
+[sub_resource type="DynamicFont" id=6]
+
+font/size = 32
+font/use_mipmaps = false
+font/use_filter = false
+font/font = ExtResource( 5 )
 
 [sub_resource type="StyleBoxEmpty" id=7]
 
@@ -76,24 +71,33 @@ content_margin/right = -1.0
 content_margin/top = -1.0
 content_margin/bottom = -1.0
 
-[sub_resource type="DynamicFont" id=10]
+[sub_resource type="StyleBoxEmpty" id=10]
+
+content_margin/left = -1.0
+content_margin/right = -1.0
+content_margin/top = -1.0
+content_margin/bottom = -1.0
+
+[sub_resource type="DynamicFont" id=11]
 
 font/size = 30
 font/use_mipmaps = false
 font/use_filter = false
 font/font = ExtResource( 5 )
 
-[sub_resource type="DynamicFont" id=11]
+[sub_resource type="DynamicFont" id=12]
 
 font/size = 42
 font/use_mipmaps = false
 font/use_filter = false
 font/font = ExtResource( 5 )
 
-[sub_resource type="SampleLibrary" id=12]
+[sub_resource type="SampleLibrary" id=13]
 
-samples/sfx_sounds_Blip10 = { "db":0.0, "pitch":1.0, "sample":ExtResource( 11 ) }
-samples/up = { "db":0.0, "pitch":1.0, "sample":ExtResource( 12 ) }
+samples/ok = { "db":0.0, "pitch":1.0, "sample":ExtResource( 11 ) }
+samples/sfx_sounds_Blip10 = { "db":0.0, "pitch":1.0, "sample":ExtResource( 12 ) }
+samples/touch = { "db":0.0, "pitch":1.0, "sample":ExtResource( 13 ) }
+samples/up = { "db":0.0, "pitch":1.0, "sample":ExtResource( 14 ) }
 
 [node name="shop" type="Control"]
 
@@ -170,7 +174,7 @@ margin/left = 15.0
 margin/top = 15.0
 margin/right = 15.0
 margin/bottom = 15.0
-custom_fonts/font = SubResource( 1 )
+custom_fonts/font = SubResource( 2 )
 text = "0"
 align = 2
 valign = 1
@@ -211,7 +215,7 @@ margin/left = 15.0
 margin/top = 15.0
 margin/right = 15.0
 margin/bottom = 15.0
-custom_fonts/font = SubResource( 1 )
+custom_fonts/font = SubResource( 2 )
 text = "UPGRADES"
 valign = 1
 percent_visible = 1.0
@@ -266,10 +270,10 @@ margin/left = 15.0
 margin/top = 15.0
 margin/right = 95.0
 margin/bottom = 15.0
-custom_styles/hover = SubResource( 2 )
-custom_styles/pressed = SubResource( 3 )
-custom_styles/disabled = SubResource( 4 )
-custom_fonts/font = SubResource( 5 )
+custom_styles/hover = SubResource( 3 )
+custom_styles/pressed = SubResource( 4 )
+custom_styles/disabled = SubResource( 5 )
+custom_fonts/font = SubResource( 6 )
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
@@ -324,10 +328,10 @@ margin/left = 15.0
 margin/top = 15.0
 margin/right = 95.0
 margin/bottom = 15.0
-custom_styles/hover = SubResource( 2 )
-custom_styles/pressed = SubResource( 3 )
-custom_styles/disabled = SubResource( 6 )
-custom_fonts/font = SubResource( 5 )
+custom_styles/hover = SubResource( 3 )
+custom_styles/pressed = SubResource( 4 )
+custom_styles/disabled = SubResource( 7 )
+custom_fonts/font = SubResource( 6 )
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
@@ -336,7 +340,6 @@ flat = true
 
 [node name="thrust_button" type="Patch9Frame" parent="."]
 
-editor/display_folded = true
 rect/min_size = Vector2( 130, 70 )
 focus/ignore_mouse = true
 focus/stop_mouse = true
@@ -382,10 +385,10 @@ margin/left = 15.0
 margin/top = 15.0
 margin/right = 95.0
 margin/bottom = 15.0
-custom_styles/hover = SubResource( 2 )
-custom_styles/pressed = SubResource( 3 )
-custom_styles/disabled = SubResource( 7 )
-custom_fonts/font = SubResource( 5 )
+custom_styles/hover = SubResource( 3 )
+custom_styles/pressed = SubResource( 4 )
+custom_styles/disabled = SubResource( 8 )
+custom_fonts/font = SubResource( 6 )
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
@@ -444,10 +447,10 @@ margin/left = 15.0
 margin/top = 15.0
 margin/right = 95.0
 margin/bottom = 15.0
-custom_styles/hover = SubResource( 2 )
-custom_styles/pressed = SubResource( 3 )
-custom_styles/disabled = SubResource( 8 )
-custom_fonts/font = SubResource( 5 )
+custom_styles/hover = SubResource( 3 )
+custom_styles/pressed = SubResource( 4 )
+custom_styles/disabled = SubResource( 9 )
+custom_fonts/font = SubResource( 6 )
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
@@ -456,7 +459,6 @@ flat = true
 
 [node name="shield_regen_button" type="Patch9Frame" parent="."]
 
-editor/display_folded = true
 anchor/left = 3
 anchor/top = 3
 anchor/right = 3
@@ -506,10 +508,10 @@ margin/left = 15.0
 margin/top = 15.0
 margin/right = 95.0
 margin/bottom = 15.0
-custom_styles/hover = SubResource( 2 )
-custom_styles/pressed = SubResource( 3 )
-custom_styles/disabled = SubResource( 9 )
-custom_fonts/font = SubResource( 5 )
+custom_styles/hover = SubResource( 3 )
+custom_styles/pressed = SubResource( 4 )
+custom_styles/disabled = SubResource( 10 )
+custom_fonts/font = SubResource( 6 )
 toggle_mode = true
 click_on_press = true
 enabled_focus_mode = 2
@@ -549,7 +551,7 @@ margin/left = 15.0
 margin/top = 15.0
 margin/right = 190.0
 margin/bottom = 15.0
-custom_fonts/font = SubResource( 10 )
+custom_fonts/font = SubResource( 11 )
 custom_colors/font_color = Color( 0.745098, 0.745098, 0.745098, 1 )
 custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
 custom_constants/shadow_offset_x = 4
@@ -660,7 +662,7 @@ margin/left = 15.0
 margin/top = 15.0
 margin/right = 190.0
 margin/bottom = 15.0
-custom_fonts/font = SubResource( 10 )
+custom_fonts/font = SubResource( 11 )
 custom_colors/font_color = Color( 0.745098, 0.745098, 0.745098, 1 )
 custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
 custom_constants/shadow_offset_x = 4
@@ -741,7 +743,6 @@ stretch_mode = 5
 
 [node name="thrust" type="Patch9Frame" parent="."]
 
-editor/display_folded = true
 anchor/top = 1
 anchor/bottom = 1
 focus/ignore_mouse = true
@@ -771,12 +772,12 @@ margin/left = 15.0
 margin/top = 15.0
 margin/right = 190.0
 margin/bottom = 15.0
-custom_fonts/font = SubResource( 10 )
+custom_fonts/font = SubResource( 11 )
 custom_colors/font_color = Color( 0.745098, 0.745098, 0.745098, 1 )
 custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
 custom_constants/shadow_offset_x = 4
 custom_constants/shadow_offset_y = 4
-text = "Power"
+text = "Thrust"
 valign = 1
 percent_visible = 1.0
 lines_skipped = 0
@@ -882,7 +883,7 @@ margin/left = 15.0
 margin/top = 15.0
 margin/right = 190.0
 margin/bottom = 15.0
-custom_fonts/font = SubResource( 10 )
+custom_fonts/font = SubResource( 11 )
 custom_colors/font_color = Color( 0.745098, 0.745098, 0.745098, 1 )
 custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
 custom_constants/shadow_offset_x = 4
@@ -993,7 +994,7 @@ margin/left = 15.0
 margin/top = 15.0
 margin/right = 190.0
 margin/bottom = 15.0
-custom_fonts/font = SubResource( 10 )
+custom_fonts/font = SubResource( 11 )
 custom_colors/font_color = Color( 0.745098, 0.745098, 0.745098, 1 )
 custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
 custom_constants/shadow_offset_x = 4
@@ -1084,7 +1085,7 @@ margin/left = 760.0
 margin/top = 133.0
 margin/right = 982.0
 margin/bottom = 48.0
-custom_fonts/font = SubResource( 11 )
+custom_fonts/font = SubResource( 12 )
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
@@ -1094,8 +1095,8 @@ flat = false
 
 [node name="sounds" type="SamplePlayer" parent="."]
 
-config/polyphony = 1
-config/samples = SubResource( 12 )
+config/polyphony = 2
+config/samples = SubResource( 13 )
 default/volume_db = 0.0
 default/pitch_scale = 1.0
 default/pan = 0.0

@@ -7,7 +7,7 @@ onready var bullet_container = get_node("../bullet_container")
 var thrust_level = {1: 500, 2: 600, 3: 700, 4: 800}
 var rot_level = {1: 100, 2: 150, 3: 180, 4: 210}
 var shield_regen = {1: 5, 2: 7.5, 3: 10, 4: 15}
-var fire_rate = {1: 5, 2: 7.5, 3: 10, 4: 15}
+var fire_rate = {1: 0.4, 2: 0.3, 3: 0.2, 4: 0.1}
 
 var ROT_SPEED = 180  # degrees per sec
 var THRUST = 500
@@ -35,8 +35,6 @@ var gun_locations = {
 	4: ["muzzle(nose)", "muzzle(lwing)", "muzzle(rwing)"]
 }
 
-
-
 func _ready():
 	screen_size = get_viewport_rect().size
 	shoot_timer.connect("timeout", self, "enable_shoot")
@@ -53,6 +51,7 @@ func _process(delta):
 	if Input.is_action_pressed("shoot_main") and can_shoot:
 		shoot(gun_count)
 		can_shoot = false
+		shoot_timer.set_wait_time(fire_rate[global.upgrade_level['fire_rate']])
 		shoot_timer.start()
 	if Input.is_action_pressed("shoot_special") and bomb_active:
 		launch_bomb()

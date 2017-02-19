@@ -12,6 +12,7 @@ func _ready():
 	screen_size = get_viewport_rect().size
 	lifetime = get_node("lifetime")
 	lifetime.connect("timeout", self, "die")
+	# TODO: make bullets child of player
 	dir = get_node("../../player").get_rotd()
 	set_rotd(dir)
 	vel = Vector2(speed, 0).rotated(deg2rad(dir + 90))
@@ -24,6 +25,7 @@ func _process(delta):
 	set_pos(get_pos() + vel * delta)
 
 func _on_player_bullet_area_enter( area ):
+	# TODO: replace with signal
 	if area.get_parent().get_groups().has("meteors"):
 		area.get_parent().get_parent().explode()
 		queue_free()

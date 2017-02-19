@@ -64,8 +64,10 @@ __meta__ = { "_edit_group_":true }
 
 [node name="ship" type="Sprite" parent="."]
 
+transform/pos = Vector2( -11.9648, -9.45541 )
 transform/scale = Vector2( 0.6, 0.6 )
 texture = ExtResource( 2 )
+offset = Vector2( 19.9414, 15.759 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 
@@ -106,19 +108,16 @@ transform/pos = Vector2( 0, 30 )
 [node name="muzzle(rwing)" type="Position2D" parent="."]
 
 transform/pos = Vector2( 30, -25 )
-transform/rot = -5.0
 
 [node name="muzzle(lwing)" type="Position2D" parent="."]
 
 transform/pos = Vector2( -30, -25 )
-transform/rot = 5.0
 
 [node name="exhaust" type="AnimatedSprite" parent="."]
 
 transform/pos = Vector2( 0, 35 )
 frames = SubResource( 2 )
 animation = "blue"
-frame = 1
 playing = true
 
 [node name="shoot_sound" type="SamplePlayer" parent="."]

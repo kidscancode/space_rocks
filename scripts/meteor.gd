@@ -1,5 +1,6 @@
 extends Node2D
 
+# TODO: replace with signals
 onready var main_scene = get_node("../..")
 var powerup = preload("res://powerup.tscn")
 
@@ -69,6 +70,7 @@ func explode():
 			newsize = 'sm'
 		elif size == 'sm':
 			newsize = 'tiny'
+		# TODO: move this to main scene
 		main_scene.spawn_meteors(2, newsize, pos, false, vel)
 	spawn_powerup()
 	queue_free()
