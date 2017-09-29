@@ -1,158 +1,120 @@
-[gd_scene load_steps=24 format=1]
+[gd_scene load_steps=16 format=2]
 
-[ext_resource path="res://scripts/player.gd" type="Script" id=1]
-[ext_resource path="res://art/sheet.playerShip2_orange.atex" type="Texture" id=2]
-[ext_resource path="res://art/sheet.fire11.atex" type="Texture" id=3]
-[ext_resource path="res://art/sheet.fire14.atex" type="Texture" id=4]
-[ext_resource path="res://art/sheet.fire16.atex" type="Texture" id=5]
-[ext_resource path="res://art/sheet.fire17.atex" type="Texture" id=6]
-[ext_resource path="res://audio/Laser_09.wav" type="Sample" id=7]
-[ext_resource path="res://audio/sfx_wpn_laser6.wav" type="Sample" id=8]
-[ext_resource path="res://audio/sfx_wpn_laser7.wav" type="Sample" id=9]
-[ext_resource path="res://audio/sfx_wpn_laser8.wav" type="Sample" id=10]
-[ext_resource path="res://art/sheet.shield3.atex" type="Texture" id=11]
-[ext_resource path="res://audio/sfx_sounds_powerup10.wav" type="Sample" id=12]
-[ext_resource path="res://audio/Downer.wav" type="Sample" id=13]
-[ext_resource path="res://audio/bounce.wav" type="Sample" id=14]
-[ext_resource path="res://audio/sfx_sounds_powerup16.wav" type="Sample" id=15]
-[ext_resource path="res://audio/sfx_sounds_powerup5.wav" type="Sample" id=16]
-[ext_resource path="res://audio/sfx_sounds_powerup6.wav" type="Sample" id=17]
-[ext_resource path="res://audio/sfx_sound_shutdown1.wav" type="Sample" id=18]
-[ext_resource path="res://audio/sfx_sounds_powerup18.wav" type="Sample" id=19]
+[ext_resource path="res://Player.gd" type="Script" id=1]
+[ext_resource path="res://PlayerBullet.tscn" type="PackedScene" id=2]
+[ext_resource path="res://art/playerShip2_orange.png" type="Texture" id=3]
+[ext_resource path="res://art/shield1.png" type="Texture" id=4]
+[ext_resource path="res://art/shield2.png" type="Texture" id=5]
+[ext_resource path="res://art/shield3.png" type="Texture" id=6]
+[ext_resource path="res://art/fire15.png" type="Texture" id=7]
+[ext_resource path="res://art/fire14.png" type="Texture" id=8]
+[ext_resource path="res://art/fire11.png" type="Texture" id=9]
+[ext_resource path="res://audio/laser2.wav" type="AudioStream" id=10]
+[ext_resource path="res://audio/player_hit.wav" type="AudioStream" id=11]
+[ext_resource path="res://audio/shield_down.wav" type="AudioStream" id=12]
 
 [sub_resource type="CircleShape2D" id=1]
 
 custom_solver_bias = 0.0
-radius = 27.8096
+radius = 27.287
 
 [sub_resource type="SpriteFrames" id=2]
 
-animations = [ { "frames":[ ExtResource( 3 ), ExtResource( 4 ) ], "loop":true, "name":"blue", "speed":5.0 }, { "frames":[ ExtResource( 5 ), ExtResource( 6 ) ], "loop":true, "name":"orange", "speed":5.0 } ]
+animations = [ {
+"frames": [ ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ) ],
+"loop": true,
+"name": "shield",
+"speed": 5.0
+} ]
 
-[sub_resource type="SampleLibrary" id=3]
+[sub_resource type="SpriteFrames" id=3]
 
-samples/Laser_09 = { "db":-5.0, "pitch":1.0, "sample":ExtResource( 7 ) }
-samples/sfx_wpn_laser6 = { "db":0.0, "pitch":1.0, "sample":ExtResource( 8 ) }
-samples/sfx_wpn_laser7 = { "db":0.0, "pitch":1.0, "sample":ExtResource( 9 ) }
-samples/sfx_wpn_laser8 = { "db":0.0, "pitch":1.0, "sample":ExtResource( 10 ) }
+animations = [ {
+"frames": [ ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
 
-[sub_resource type="SampleLibrary" id=4]
+[node name="Player" type="Area2D"]
 
-samples/cash_up = { "db":0.0, "pitch":1.0, "sample":ExtResource( 12 ) }
-samples/gun_down = { "db":0.0, "pitch":1.0, "sample":ExtResource( 13 ) }
-samples/gun_down1 = { "db":0.0, "pitch":1.0, "sample":ExtResource( 14 ) }
-samples/gun_up = { "db":0.0, "pitch":1.0, "sample":ExtResource( 15 ) }
-samples/sfx_sounds_powerup5 = { "db":0.0, "pitch":1.0, "sample":ExtResource( 16 ) }
-samples/sfx_sounds_powerup6 = { "db":0.0, "pitch":1.0, "sample":ExtResource( 17 ) }
-samples/shield_down = { "db":0.0, "pitch":1.0, "sample":ExtResource( 18 ) }
-samples/shield_up = { "db":0.0, "pitch":1.0, "sample":ExtResource( 19 ) }
-
-[node name="player" type="Area2D"]
-
-process/pause_mode = 1
-transform/pos = Vector2( 512, 368 )
-input/pickable = true
-shapes/0/shape = SubResource( 1 )
-shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 4.45535 )
-shapes/0/trigger = false
+input_pickable = false
 gravity_vec = Vector2( 0, 1 )
 gravity = 98.0
 linear_damp = 0.1
 angular_damp = 1.0
-script/script = ExtResource( 1 )
-__meta__ = { "_edit_group_":true }
+audio_bus_override = false
+audio_bus_name = "Master"
+script = ExtResource( 1 )
+_sections_unfolded = [ "Transform" ]
+bullet = ExtResource( 2 )
 
-[node name="ship" type="Sprite" parent="."]
+[node name="Sprite" type="Sprite" parent="."]
 
-transform/pos = Vector2( -11.9648, -9.45541 )
-transform/scale = Vector2( 0.6, 0.6 )
-texture = ExtResource( 2 )
-offset = Vector2( 19.9414, 15.759 )
+rotation = 1.5708
+scale = Vector2( 0.6, 0.6 )
+texture = ExtResource( 3 )
+_sections_unfolded = [ "Transform" ]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 
-transform/pos = Vector2( 0, 4.45535 )
+visible = false
 shape = SubResource( 1 )
-trigger = false
-_update_shape_index = 0
 
-[node name="shoot_timer" type="Timer" parent="."]
+[node name="Muzzle" type="Position2D" parent="."]
 
-process_mode = 1
-wait_time = 0.2
-one_shot = false
-autostart = false
+position = Vector2( 50, 0 )
+_sections_unfolded = [ "Transform" ]
 
-[node name="bomb_timer" type="Timer" parent="."]
+[node name="GunTimer" type="Timer" parent="."]
 
 process_mode = 1
-wait_time = 5.0
-one_shot = false
-autostart = false
-
-[node name="pow_timer" type="Timer" parent="."]
-
-process_mode = 1
-wait_time = 5.0
+wait_time = 0.15
 one_shot = true
 autostart = false
 
-[node name="muzzle(nose)" type="Position2D" parent="."]
+[node name="Shield" type="AnimatedSprite" parent="."]
 
-transform/pos = Vector2( 0, -50 )
-
-[node name="muzzle(tail)" type="Position2D" parent="."]
-
-transform/pos = Vector2( 0, 30 )
-
-[node name="muzzle(rwing)" type="Position2D" parent="."]
-
-transform/pos = Vector2( 30, -25 )
-
-[node name="muzzle(lwing)" type="Position2D" parent="."]
-
-transform/pos = Vector2( -30, -25 )
-
-[node name="exhaust" type="AnimatedSprite" parent="."]
-
-transform/pos = Vector2( 0, 35 )
+rotation = 1.5708
+scale = Vector2( 0.5, 0.5 )
 frames = SubResource( 2 )
-animation = "blue"
+animation = "shield"
+frame = 2
+_sections_unfolded = [ "Transform" ]
+
+[node name="Exhaust" type="AnimatedSprite" parent="."]
+
+position = Vector2( -35, 0 )
+rotation = 1.5708
+frames = SubResource( 3 )
+animation = "default"
 playing = true
+_sections_unfolded = [ "Transform" ]
 
-[node name="shoot_sound" type="SamplePlayer" parent="."]
+[node name="LaserSound" type="AudioStreamPlayer" parent="."]
 
-config/polyphony = 1
-config/samples = SubResource( 3 )
-default/volume_db = 0.0
-default/pitch_scale = 1.0
-default/pan = 0.0
-default/depth = 0.0
-default/height = 0.0
-default/filter/type = 0
-default/filter/cutoff = 5000.0
-default/filter/resonance = 1.0
-default/filter/gain = 1.0
-default/reverb_room = 2
-default/reverb_send = 0.0
-default/chorus_send = 0.0
+stream = ExtResource( 10 )
+volume_db = -5.0
+autoplay = false
+mix_target = 0
+bus = "Master"
 
-[node name="shield" type="Sprite" parent="."]
+[node name="HitSound" type="AudioStreamPlayer" parent="."]
 
-transform/scale = Vector2( 0.5, 0.5 )
-texture = ExtResource( 11 )
+stream = ExtResource( 11 )
+volume_db = -5.0
+autoplay = false
+mix_target = 0
+bus = "Master"
 
-[node name="pow_sounds" type="SamplePlayer2D" parent="."]
+[node name="ShieldDownSound" type="AudioStreamPlayer" parent="."]
 
-params/volume_db = 0.0
-params/pitch_scale = 1.0
-params/attenuation/min_distance = 1.0
-params/attenuation/max_distance = 2048.0
-params/attenuation/distance_exp = 1.0
-config/polyphony = 1
-config/samples = SubResource( 4 )
-config/pitch_random = 0.0
+stream = ExtResource( 12 )
+volume_db = -5.0
+autoplay = false
+mix_target = 0
+bus = "Master"
 
-[connection signal="area_enter" from="." to="." method="_on_player_area_enter"]
+[connection signal="body_entered" from="." to="." method="_on_Player_body_entered"]
 
 
