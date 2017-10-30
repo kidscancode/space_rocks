@@ -32,6 +32,7 @@ var enemy_accuracy = 0.1
 var enemy_points = 100
 
 # asteroid settings
+var drop_chance = 0.05
 var break_pattern = {'big': 'med', 'med': 'sm', 'sm': 'tiny', 'tiny': null}
 var rock_mass = {'big': 20, 'med': 9, 'sm': 5, 'tiny': 1}
 var rock_damage = {'big': 40, 'med': 20, 'sm': 15, 'tiny': 10}
@@ -55,6 +56,7 @@ func new_game():
 	game_over = false
 	score = 0
 	level = 0
+	cash = 0
 	goto_scene("res://Main.tscn")
 	
 	

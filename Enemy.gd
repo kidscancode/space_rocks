@@ -39,7 +39,7 @@ func shoot1():
 	
 func _on_ShootTimer_timeout():
 	if target.is_visible():
-		shoot_pulse(3, 0.1)
+		shoot_pulse(2, 0.2)
 		
 func shoot_pulse(n, delay):
 	for i in range(n):

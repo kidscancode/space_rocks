@@ -7,6 +7,9 @@ func _input(event):
 func update_score(val):
 	$ScoreLabel.text = str(val)
 	
+func update_cash(val):
+	$CashLabel.text = str(val)
+
 func update_shield(val):
 	if val <= 0:
 		$ShieldIcon.modulate = Color(1, 1, 1, 0.5)

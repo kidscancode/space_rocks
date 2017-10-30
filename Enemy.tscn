@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://Enemy.gd" type="Script" id=1]
 [ext_resource path="res://EnemyBullet.tscn" type="PackedScene" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://EnemyPaths.tscn" type="PackedScene" id=4]
 [ext_resource path="res://audio/enemy_laser.wav" type="AudioStream" id=5]
 [ext_resource path="res://audio/enemy_hit.wav" type="AudioStream" id=6]
+[ext_resource path="res://art/corona.png" type="Texture" id=7]
 
 [sub_resource type="CircleShape2D" id=1]
 
@@ -48,6 +49,65 @@ tracks/0/keys = {
 "values": [ 0.0, 180.0, 360.0 ]
 }
 
+[sub_resource type="CanvasItemMaterial" id=4]
+
+render_priority = 0
+blend_mode = 1
+light_mode = 0
+
+[sub_resource type="Curve" id=5]
+
+min_value = 0.0
+max_value = 1.0
+bake_resolution = 100
+_data = [ Vector2( 0.00203111, 0.124023 ), 0.0, 0.0, 0, 0, Vector2( 0.998698, 0.0488281 ), 0.342644, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=6]
+
+width = 2048
+curve = SubResource( 5 )
+
+[sub_resource type="ParticlesMaterial" id=7]
+
+render_priority = 0
+trail_divisor = 1
+emission_shape = 2
+emission_box_extents = Vector3( 20, 20, 1 )
+flag_align_y = false
+flag_rotate_y = false
+flag_disable_z = true
+spread = 25.0
+flatness = 0.0
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 1.0
+initial_velocity_random = 0.0
+angular_velocity = 7.18379e+22
+angular_velocity_random = 0.0
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+linear_accel = 0.0
+linear_accel_random = 0.0
+radial_accel = 0.0
+radial_accel_random = 0.0
+tangential_accel = 0.0
+tangential_accel_random = 0.0
+damping = 0.0
+damping_random = 0.0
+angle = 0.0
+angle_random = 0.0
+scale = 1.0
+scale_random = 0.0
+scale_curve = SubResource( 6 )
+color = Color( 1, 1, 1, 1 )
+hue_variation = 0.0
+hue_variation_random = 0.0
+anim_speed = 0.0
+anim_speed_random = 0.0
+anim_offset = 0.0
+anim_offset_random = 0.0
+anim_loop = false
+_sections_unfolded = [ "Color", "Emission Shape", "Flags", "Resource", "Spread" ]
+
 [node name="Enemy" type="Area2D" groups=[
 "enemies",
 ]]
@@ -60,6 +120,9 @@ angular_damp = 1.0
 audio_bus_override = false
 audio_bus_name = "Master"
 script = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
 bullet = ExtResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="."]
@@ -118,6 +181,30 @@ volume_db = -5.0
 autoplay = false
 mix_target = 0
 bus = "Master"
+
+[node name="Trail" type="Particles2D" parent="."]
+
+show_behind_parent = true
+material = SubResource( 4 )
+emitting = true
+amount = 20
+lifetime = 1.0
+one_shot = false
+preprocess = 0.0
+speed_scale = 1.0
+explosiveness = 0.0
+randomness = 0.0
+fixed_fps = 0
+fract_delta = true
+visibility_rect = Rect2( -100, -100, 200, 200 )
+local_coords = false
+draw_order = 0
+process_material = SubResource( 7 )
+texture = ExtResource( 7 )
+normal_map = null
+h_frames = 1
+v_frames = 1
+_sections_unfolded = [ "Drawing", "Material", "Process Material", "Textures", "Time", "Visibility" ]
 
 [connection signal="timeout" from="ShootTimer" to="." method="_on_ShootTimer_timeout"]
 

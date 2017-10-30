@@ -3,6 +3,7 @@ extends Node
 export (PackedScene) var Asteroid
 export (PackedScene) var Explosion
 export (PackedScene) var Enemy
+export (PackedScene) var Drop
 
 func _ready():
 	randomize()
@@ -50,6 +51,10 @@ func explode_asteroid(size, extents, pos, vel, hit_vel):
 	expl.position = pos
 	$"Sounds/AsteroidExplosion".play()
 	expl.play()
+	if randf() < global.drop_chance:
+		var d = Drop.instance()
+		d.position = pos
+		add_child(d)
 
 func explode_player():
 	var expl = Explosion.instance()
@@ -71,6 +76,9 @@ func explode_enemy(pos):
 	expl.animation = "sonic"
 	$"Sounds/EnemyExplosion".play()
 	expl.play()
+	var d = Drop.instance()
+	d.position = pos
+	add_child(d)
 
 func _on_EnemyTimer_timeout():
 	var e = Enemy.instance()
@@ -83,3 +91,10 @@ func _on_EnemyTimer_timeout():
 
 func _on_RestartTimer_timeout():
 	global.new_game()
+
+func _on_Player_pickup(body):
+	global.cash += 1
+	$HUD.update_cash(global.cash)
+	body.queue_free()
+	
+	

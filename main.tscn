@@ -1,14 +1,15 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://Main.gd" type="Script" id=1]
 [ext_resource path="res://Rock.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Explosion.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Enemy.tscn" type="PackedScene" id=4]
-[ext_resource path="res://art/starfield.png" type="Texture" id=5]
-[ext_resource path="res://Player.tscn" type="PackedScene" id=6]
-[ext_resource path="res://HUD.tscn" type="PackedScene" id=7]
-[ext_resource path="res://audio/expl3.wav" type="AudioStream" id=8]
-[ext_resource path="res://audio/SimpleBeat.ogg" type="AudioStream" id=9]
+[ext_resource path="res://Drop.tscn" type="PackedScene" id=5]
+[ext_resource path="res://art/starfield.png" type="Texture" id=6]
+[ext_resource path="res://Player.tscn" type="PackedScene" id=7]
+[ext_resource path="res://HUD.tscn" type="PackedScene" id=8]
+[ext_resource path="res://audio/expl3.wav" type="AudioStream" id=9]
+[ext_resource path="res://audio/SimpleBeat.ogg" type="AudioStream" id=10]
 
 [sub_resource type="RectangleShape2D" id=1]
 
@@ -33,14 +34,15 @@ script = ExtResource( 1 )
 Asteroid = ExtResource( 2 )
 Explosion = ExtResource( 3 )
 Enemy = ExtResource( 4 )
+Drop = ExtResource( 5 )
 
 [node name="Background" type="Sprite" parent="."]
 
 position = Vector2( 512.499, 382.324 )
 scale = Vector2( 1.31782, 1.31782 )
-texture = ExtResource( 5 )
+texture = ExtResource( 6 )
 
-[node name="Player" parent="." instance=ExtResource( 6 )]
+[node name="Player" parent="." instance=ExtResource( 7 )]
 
 position = Vector2( 512, 300 )
 
@@ -118,6 +120,7 @@ shape = SubResource( 2 )
 
 [node name="AsteroidPath" type="Path2D" parent="."]
 
+editor/display_folded = true
 curve = SubResource( 3 )
 
 [node name="PathLocation" type="PathFollow2D" parent="AsteroidPath"]
@@ -132,7 +135,7 @@ cubic_interp = true
 loop = true
 lookahead = 4.0
 
-[node name="HUD" parent="." instance=ExtResource( 7 )]
+[node name="HUD" parent="." instance=ExtResource( 8 )]
 
 [node name="EnemyTimer" type="Timer" parent="."]
 
@@ -154,7 +157,7 @@ editor/display_folded = true
 
 [node name="AsteroidExplosion" type="AudioStreamPlayer" parent="Sounds"]
 
-stream = ExtResource( 8 )
+stream = ExtResource( 9 )
 volume_db = -7.0
 autoplay = false
 mix_target = 0
@@ -162,7 +165,7 @@ bus = "Master"
 
 [node name="EnemyExplosion" type="AudioStreamPlayer" parent="Sounds"]
 
-stream = ExtResource( 8 )
+stream = ExtResource( 9 )
 volume_db = -7.0
 autoplay = false
 mix_target = 0
@@ -170,13 +173,15 @@ bus = "Master"
 
 [node name="Music" type="AudioStreamPlayer" parent="."]
 
-stream = ExtResource( 9 )
+stream = ExtResource( 10 )
 volume_db = -5.0
 autoplay = false
 mix_target = 0
 bus = "Master"
 
 [connection signal="explode" from="Player" to="." method="explode_player"]
+
+[connection signal="pickup" from="Player" to="." method="_on_Player_pickup"]
 
 [connection signal="shield_changed" from="Player" to="HUD" method="update_shield"]
 

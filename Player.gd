@@ -2,6 +2,7 @@ extends Area2D
 
 signal explode
 signal shoot
+signal pickup
 signal shield_changed
 
 var rot_speed = global.rot_level[global.upgrade_level['rot_speed']]
@@ -18,7 +19,7 @@ var shield_level = 100
 func _ready():
 	$Shield.frame = 2
 	
-func _fixed_process(delta):
+func _physics_process(delta):
 	if shield_up and shield_level < global.shield_max:
 		shield_level = min(shield_level + global.shield_level[global.upgrade_level['shield_regen']] * delta,
 						   global.shield_max)
@@ -32,17 +33,22 @@ func _fixed_process(delta):
 		
 	if Input.is_action_pressed("ui_select"):
 		if $GunTimer.get_time_left() == 0:
-			shoot()
+			shoot2()
 	if Input.is_action_pressed("ui_left"):
 		rotation -= rot_speed * delta
 	if Input.is_action_pressed("ui_right"):
 		rotation += rot_speed * delta
 	if Input.is_action_pressed("ui_up"):
 		acceleration = Vector2(thrust, 0).rotated(rotation)
-		$Exhaust.show()
+		#$Exhaust.show()
+		if not $ThrustSound.playing:
+			$ThrustSound.play()
+		$ExhaustFlame.emitting = true
 	else:
 		acceleration = Vector2()
-		$Exhaust.hide()
+		#$Exhaust.hide()
+		$ThrustSound.stop()
+		$ExhaustFlame.emitting = false
 	
 	acceleration += velocity * friction
 	velocity += acceleration * delta
@@ -61,10 +67,16 @@ func shoot():
 	$GunTimer.start()
 	$LaserSound.play()
 	emit_signal("shoot", bullet, $Muzzle.global_position, rotation)
+
+func shoot2():
+	$GunTimer.start()
+	$LaserSound.play()
+	emit_signal("shoot", bullet, $MuzzleLeft.global_position, $MuzzleLeft.global_rotation)
+	emit_signal("shoot", bullet, $MuzzleRight.global_position, $MuzzleRight.global_rotation)
 	
 func disable():
 	visible = false
-	set_fixed_process(false)
+	set_physics_process(false)
 	call_deferred("set_enable_monitoring", false)
 	
 func take_damage(amount):
@@ -87,3 +99,7 @@ func _on_Player_body_entered( body ):
 	if body.is_in_group("asteroids"):
 		body.explode(velocity.normalized())
 		take_damage(global.rock_damage[body.size])
+	if body.is_in_group("drops"):
+		$PickupSound.play()
+		emit_signal("pickup", body)
+		

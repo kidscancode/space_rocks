@@ -8,7 +8,8 @@ func start_at(pos, dir):
 	rotation = dir
 	velocity = Vector2(speed, 0).rotated(dir)
 	
-func _fixed_process(delta):
+#func _fixed_process(delta):
+func _physics_process(delta):
 	position += velocity * delta
 	
 func _on_Visibility_exit_screen():
